@@ -4,6 +4,7 @@ public class Incident {
 	public static final String FIRE_INCIDENT="fire";
 	public static final String TRAFFIC_ACCIDENT="traffic_accident";
 	public static final String GAS_LEAK_INCIDENT="gas_leak_incident";
+	public static final String HAZE_INFO="haze_info";
 	private int incidentID;
 	private String reporterName,location,creationTimestamp,description,closureRemarks,closureTimestamp,typeOfAssistance,operatorName,incidentType;
 	public String getOperatorName() {

@@ -3,9 +3,8 @@ package com.entity;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-public class HazeInfo {
-	int centralPsi,northPsi,southPsi,eastPsi,westPsi;
-	Date timestamp;
+public class HazeInfo extends Incident{
+	private int centralPsi,northPsi,southPsi,eastPsi,westPsi;
 	public int getCentralPsi() {
 		return centralPsi;
 	}
@@ -35,11 +34,5 @@ public class HazeInfo {
 	}
 	public void setWestPsi(int westPsi) {
 		this.westPsi = westPsi;
-	}
-	public Date getTimestamp() {
-		return timestamp;
-	}
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
 	}
 }

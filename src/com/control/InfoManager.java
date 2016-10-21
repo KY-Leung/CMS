@@ -65,48 +65,6 @@ public class InfoManager {
 		return list;
 	}
 	
-	public HazeInfo retrieveLatestHazeInfo(){
-		HazeInfo hi=new HazeInfo();
-		DbController db=new DbController();
-		String query="select * from hazeinfo order by timestamp DESC LIMIT 1";
-		try{
-			ResultSet rs=db.executeSql(query);
-			if(rs.next()){
-				hi.setCentralPsi(rs.getInt("centralPsi"));
-				hi.setNorthPsi(rs.getInt("northPsi"));
-				hi.setSouthPsi(rs.getInt("southPsi"));
-				hi.setEastPsi(rs.getInt("eastPsi"));
-				hi.setWestPsi(rs.getInt("westPsi"));
-				hi.setTimestamp(rs.getDate("timestamp"));
-			
-			}
-		}catch(Exception e){
-			
-		}
-		return hi;
-	}
-	public ArrayList<HazeInfo> retrieveHazeInfo(){
-		HazeInfo hi=null;
-		DbController db=new DbController();
-		ArrayList<HazeInfo> list=new ArrayList<HazeInfo>();
-		String query="select * from hazeinfo";
-		try{
-			ResultSet rs=db.executeSql(query);
-			if(rs.next()){
-				hi=new HazeInfo();
-				hi.setCentralPsi(rs.getInt("centralPsi"));
-				hi.setNorthPsi(rs.getInt("northPsi"));
-				hi.setSouthPsi(rs.getInt("southPsi"));
-				hi.setEastPsi(rs.getInt("eastPsi"));
-				hi.setWestPsi(rs.getInt("westPsi"));
-				hi.setTimestamp(rs.getDate("timestamp"));
-				list.add(hi);
-			}
-		}catch(Exception e){
-			
-		}
-		return list;
-	}
 	public ArrayList<EmergencyServicesInfo> retrieveEmergencyServicesInfo(){
 		ArrayList<EmergencyServicesInfo> list=new ArrayList<EmergencyServicesInfo>();
 		EmergencyServicesInfo ei=null;
