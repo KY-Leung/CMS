@@ -8,8 +8,15 @@ public class DbController {
 		connect();
 	}
 	private void connect(){
+		try {
+		    Class.forName("com.mysql.jdbc.Driver");
+		} 
+		catch (ClassNotFoundException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
 		try{
-			c=DriverManager.getConnection("jdbc:mysql://localhost:3306/3003_db?useSSL=false","root","password");
+			c=DriverManager.getConnection("jdbc:mysql://localhost:3306/cms?useSSL=false","root","password");
 			s=c.createStatement();
 		}catch(Exception e){
 			e.printStackTrace();

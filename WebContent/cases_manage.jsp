@@ -15,6 +15,11 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
+<%@ page import='com.control.IncidentManager, java.util.ArrayList, com.entity.Incident' %>
+
+<%! IncidentManager incident_manager = new IncidentManager();  
+	ArrayList<Incident> incidents = new ArrayList<>(); 
+%>
 <html lang="en">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
@@ -319,7 +324,59 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <th> Actions </th>
                                             </tr>
                                         </thead>
+                                        <tr>
+                                                <td> C0001 </td>
+                                                <td> Fire </td>
+                                                <td> 456780 </td>
+                                                <td> Emergency Ambulance </td>
+                                                <td></td>
+                                                <td> Donald Trump </td>
+                                                <td> 98765432 </td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li>
+                                                                <a href="cases_close.html">
+                                                                    <i class="icon-tag" ></i> Close </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         <tbody>
+                                        <% incidents = incident_manager.retrieveIncidents();
+                                        	out.println("Number of incidents = " + incidents.size()); 
+                                        	for(Incident i : incidents) { 
+                                        		if (!i.isClosed()) {
+                                   		%>
+                                       		<tr>
+                                               <td><%= i.getIncidentID() %></td>
+                                               <td><%= i.getIncidentType() %></td>
+                                               <td> <%= i.getLocation() %> </td>
+                                               <td> <%=i.getTypeOfAssistance() %> </td>
+                                               <td><%= i.getDescription() %></td>
+                                               <td> <%= i.getReporterName() %></td>
+                                               <td> <%= i.getReporterPhoneNumber() %></td>
+                                               <td>
+                                                   <div class="btn-group">
+                                                       <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
+                                                           <i class="fa fa-angle-down"></i>
+                                                       </button>
+                                                       <ul class="dropdown-menu" role="menu">
+                                                           <li>
+                                                               <a href="cases_close.html">
+                                                                   <i class="icon-tag" ></i> Close </a>
+                                                           </li>
+                                                       </ul>
+                                                   </div>
+                                               </td>
+                                           </tr>
+                                        	
+                                        <% }} %>
+                                        
                                             <tr>
                                                 <td> C0001 </td>
                                                 <td> Fire </td>
