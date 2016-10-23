@@ -9,6 +9,12 @@ import com.entity.Incident;
 
 
 public class IncidentManager {
+//	public static void main(String[] args) {
+//		IncidentManager i = new IncidentManager(); 
+//		ArrayList<Incident> incidents = i.retrieveIncidents();
+//    	System.out.println("Number of incidents = " + incidents.size());
+//	}
+	
 	public int createIncident(String reporterName,int reporterPhoneNumber,String typeOfAssistance,String typeOfIncident,String location,String description,String operatorName){
 		int incidentID=1;
 		DbController db=new DbController();
@@ -68,7 +74,7 @@ public class IncidentManager {
 				incident.setClosureRemarks(rs.getString("closureRemarks"));
 				incident.setClosed(rs.getBoolean("isClosed"));
 				incident.setClosureTimestamp(rs.getString("closureTimestamp"));
-				incident.setOperatorName(rs.getString("operatorName"));
+				incident.setOperatorName(rs.getString("operatorUsername"));
 				incident.setIncidentType(rs.getString("typeOfIncident"));
 				list.add(incident);
 			}
@@ -94,7 +100,7 @@ public class IncidentManager {
 				hi.setClosureRemarks(rs.getString("closureRemarks"));
 				hi.setClosed(rs.getBoolean("isClosed"));
 				hi.setClosureTimestamp(rs.getString("closureTimestamp"));
-				hi.setOperatorName(rs.getString("operatorName"));
+				hi.setOperatorName(rs.getString("operatorUsername"));
 				hi.setIncidentType(rs.getString("typeOfIncident"));
 				hi.setCentralPsi(rs.getInt("centralPsi"));
 				hi.setNorthPsi(rs.getInt("northPsi"));
@@ -128,7 +134,7 @@ public class IncidentManager {
 				hi.setClosureRemarks(rs.getString("closureRemarks"));
 				hi.setClosed(rs.getBoolean("isClosed"));
 				hi.setClosureTimestamp(rs.getString("closureTimestamp"));
-				hi.setOperatorName(rs.getString("operatorName"));
+				hi.setOperatorName(rs.getString("operatorUsername"));
 				hi.setIncidentType(rs.getString("typeOfIncident"));
 				hi.setCentralPsi(rs.getInt("centralPsi"));
 				hi.setNorthPsi(rs.getInt("northPsi"));
@@ -162,7 +168,7 @@ public class IncidentManager {
 				fi.setClosureRemarks(rs.getString("closureRemarks"));
 				fi.setClosed(rs.getBoolean("isClosed"));
 				fi.setClosureTimestamp(rs.getString("closureTimestamp"));
-				fi.setOperatorName(rs.getString("operatorName"));
+				fi.setOperatorName(rs.getString("operatorUsername"));
 				fi.setIncidentType(rs.getString("typeOfIncident"));
 				fi.setNumberOfCasualties(rs.getInt("numberOfCasualties"));
 				fi.setFirefightingTime(rs.getInt("firefightingTime"));
