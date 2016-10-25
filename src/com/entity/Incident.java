@@ -5,16 +5,18 @@ public class Incident {
 	public static final String TRAFFIC_ACCIDENT="traffic_accident";
 	public static final String GAS_LEAK_INCIDENT="gas_leak_incident";
 	public static final String HAZE_INFO="haze_info";
+	public static final String NOT_APPLICABLE="na";
 	private int incidentID;
 	private String reporterName,location,creationTimestamp,description,closureRemarks,closureTimestamp,typeOfAssistance,operatorName,incidentType;
+	private boolean isClosed;
+	private int reporterPhoneNumber;
 	public String getOperatorName() {
 		return operatorName;
 	}
 	public void setOperatorName(String operatorName) {
 		this.operatorName = operatorName;
 	}
-	boolean isClosed;
-	int reporterPhoneNumber;
+
 	public int getIncidentID() {
 		return incidentID;
 	}

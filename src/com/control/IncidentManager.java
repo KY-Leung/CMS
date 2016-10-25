@@ -9,16 +9,10 @@ import com.entity.Incident;
 
 
 public class IncidentManager {
-//	public static void main(String[] args) {
-//		IncidentManager i = new IncidentManager(); 
-//		ArrayList<Incident> incidents = i.retrieveIncidents();
-//    	System.out.println("Number of incidents = " + incidents.size());
-//	}
-	
 	public int createIncident(String reporterName,int reporterPhoneNumber,String typeOfAssistance,String typeOfIncident,String location,String description,String operatorName){
 		int incidentID=1;
 		DbController db=new DbController();
-		String query="insert into incident values(null,'"+reporterName+"',"+reporterPhoneNumber+",'"+typeOfIncident+"','"+location+"','"+typeOfAssistance+"','"+description+"',null,null,null,null,'"+operatorName+"')";
+		String query="insert into incident values(null,'"+reporterName+"',"+reporterPhoneNumber+",'"+typeOfIncident+"','"+location+"','"+typeOfAssistance+"','"+description+"',null,false,null,null,'"+operatorName+"')";
 		System.out.println(query);
 		db.updateSql(query);
 		query="select last_insert_id() as last";
@@ -39,6 +33,9 @@ public class IncidentManager {
 		String query="insert into hazeinfo values("+incidentID+","+central+","+north+","+south+","+east+","+west+")";
 		System.out.println(query);
 		db.updateSql(query);
+		query="update incident set isClosed="+true+" where incidentID="+incidentID;
+		System.out.println(query);
+		db.updateSql(query);
 		db.close();
 	}
 	
@@ -55,6 +52,48 @@ public class IncidentManager {
 		db.close();
 		
 	}
+	public Incident retrieveSingleIncident(int incidentID){
+		Incident incident=null;
+		DbController db=new DbController();
+		String query="select * from incident left join hazeinfo on incident.incidentID=hazeinfo.incidentID left join fireincident on incident.incidentID=fireincident.incidentID where incident.incidentID="+incidentID;
+		try{
+			System.out.println(query);
+			ResultSet rs=db.executeSql(query);
+			while(rs.next()){
+				if(rs.getString("typeOfIncident").equals(Incident.FIRE_INCIDENT)){
+					FireIncident fIncident=new FireIncident();
+					fIncident.setNumberOfCasualties(rs.getInt("numberOfCasualties"));
+					fIncident.setFirefightingTime(rs.getInt("firefightingTime"));
+					incident=fIncident;
+				}
+				else if(rs.getString("typeOfIncident").equals(Incident.HAZE_INFO)){
+					HazeInfo hInfo=new HazeInfo();
+					hInfo.setCentralPsi(rs.getInt("centralPsi"));
+					hInfo.setNorthPsi(rs.getInt("northPsi"));
+					hInfo.setSouthPsi(rs.getInt("southPsi"));
+					hInfo.setEastPsi(rs.getInt("eastPsi"));
+					hInfo.setWestPsi(rs.getInt("westPsi"));
+					incident=hInfo;
+				}
+				incident.setIncidentID(rs.getInt("incidentID"));
+				incident.setReporterName(rs.getString("reporterName"));
+				incident.setReporterPhoneNumber(rs.getInt("reporterPhoneNumber"));
+				incident.setLocation(rs.getString("location"));
+				incident.setTypeOfAssistance(rs.getString("typeOfAssistance"));
+				incident.setDescription(rs.getString("description"));
+				incident.setCreationTimestamp(rs.getString("creationTimestamp"));
+				incident.setClosureRemarks(rs.getString("closureRemarks"));
+				incident.setClosed(rs.getBoolean("isClosed"));
+				incident.setClosureTimestamp(rs.getString("closureTimestamp"));
+				incident.setOperatorName(rs.getString("operatorUsername"));
+				incident.setIncidentType(rs.getString("typeOfIncident"));
+
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return incident;
+	}
 	public ArrayList<Incident> retrieveIncidents(){
 		ArrayList<Incident> list=new ArrayList<Incident>();
 		Incident incident=null;
@@ -64,6 +103,7 @@ public class IncidentManager {
 			ResultSet rs=db.executeSql(query);
 			while(rs.next()){
 				incident=new Incident();
+				
 				incident.setIncidentID(rs.getInt("incidentID"));
 				incident.setReporterName(rs.getString("reporterName"));
 				incident.setReporterPhoneNumber(rs.getInt("reporterPhoneNumber"));
@@ -79,7 +119,7 @@ public class IncidentManager {
 				list.add(incident);
 			}
 		}catch(Exception e){
-			
+			e.printStackTrace();
 		}
 		return list;
 	}
@@ -100,7 +140,7 @@ public class IncidentManager {
 				hi.setClosureRemarks(rs.getString("closureRemarks"));
 				hi.setClosed(rs.getBoolean("isClosed"));
 				hi.setClosureTimestamp(rs.getString("closureTimestamp"));
-				hi.setOperatorName(rs.getString("operatorUsername"));
+				hi.setOperatorName(rs.getString("operatorName"));
 				hi.setIncidentType(rs.getString("typeOfIncident"));
 				hi.setCentralPsi(rs.getInt("centralPsi"));
 				hi.setNorthPsi(rs.getInt("northPsi"));
@@ -134,7 +174,7 @@ public class IncidentManager {
 				hi.setClosureRemarks(rs.getString("closureRemarks"));
 				hi.setClosed(rs.getBoolean("isClosed"));
 				hi.setClosureTimestamp(rs.getString("closureTimestamp"));
-				hi.setOperatorName(rs.getString("operatorUsername"));
+				hi.setOperatorName(rs.getString("operatorName"));
 				hi.setIncidentType(rs.getString("typeOfIncident"));
 				hi.setCentralPsi(rs.getInt("centralPsi"));
 				hi.setNorthPsi(rs.getInt("northPsi"));
@@ -168,7 +208,7 @@ public class IncidentManager {
 				fi.setClosureRemarks(rs.getString("closureRemarks"));
 				fi.setClosed(rs.getBoolean("isClosed"));
 				fi.setClosureTimestamp(rs.getString("closureTimestamp"));
-				fi.setOperatorName(rs.getString("operatorUsername"));
+				fi.setOperatorName(rs.getString("operatorName"));
 				fi.setIncidentType(rs.getString("typeOfIncident"));
 				fi.setNumberOfCasualties(rs.getInt("numberOfCasualties"));
 				fi.setFirefightingTime(rs.getInt("firefightingTime"));
@@ -178,6 +218,13 @@ public class IncidentManager {
 			
 		}
 		return list;
+	}
+	public static void main(String [] args){
+		IncidentManager im=new IncidentManager();
+		System.out.println(im.retrieveSingleIncident(10).getIncidentType());
+		//int key=im.createIncident("rname 10", 12345, EmergencyServicesInfo.FIRE_SERVICE, Incident.FIRE_INCIDENT, "730600", "desc", "operator 4");
+		//im.createHazeInfo(key, 100, 202, 60, 70, 80);
+		//im.createFireIncident(key, 5, 4);
 	}
 //	public void updateLocation(int incidentID,String location){
 //		DbController db=new DbController();
