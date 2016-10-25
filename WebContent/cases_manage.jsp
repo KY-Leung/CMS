@@ -345,7 +345,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                        </button>
                                                        <ul class="dropdown-menu" role="menu">
                                                            <li>
-                                                               <a href="cases_close.html">
+                                                               <a href="cases_close.jsp?id=<%= i.getIncidentID() %>">
                                                                    <i class="icon-tag" ></i> Close </a>
                                                            </li>
                                                        </ul>

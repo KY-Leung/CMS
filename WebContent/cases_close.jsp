@@ -15,6 +15,11 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
+<%@ page import='com.control.IncidentManager, java.util.ArrayList, com.entity.Incident' %>
+
+<%! IncidentManager incident_manager = new IncidentManager();  
+	int incident_id = -1; 
+%>
 <html lang="en">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
@@ -370,8 +375,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <div class="tab-pane" id="tab4">
                                                         <h3 class="block">Confirmation</h3>
                                                         <h4 class="form-section">Case details</h4>
+                                                        <% incident_id = Integer.parseInt(request.getParameter("id"));  %>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Type of Case:</label>
+                                                            <label class="control-label col-md-3">Type of Case: <%= incident_id %> </label>
                                                             <div class="col-md-4">
                                                                 <p class="form-control-static" data-display=""> </p>
                                                             </div>
@@ -430,7 +436,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <a href="javascript:;" class="btn btn-outline green button-next"> Continue
                                                             <i class="fa fa-angle-right"></i>
                                                         </a>
-                                                        <a href="javascript:;" class="btn red button-submit uppercase demo-3" id="demo_3"> Close Case
+                                                        <a href="http://localhost:9999/Cms/cases_manage.jsp" <% incident_manager.closeIncident(incident_id, "");  %>" class="btn red button-submit uppercase demo-3" id="demo_3"> Close Case
                                                             <i class="fa fa-check"></i>
                                                         </a>
                                                     </div>
