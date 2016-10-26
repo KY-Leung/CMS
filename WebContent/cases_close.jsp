@@ -19,6 +19,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <%! IncidentManager incident_manager = new IncidentManager();  
 	int incident_id = -1; 
+	Incident incident; 
 %>
 <html lang="en">
     <!--<![endif]-->
@@ -375,39 +376,40 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <div class="tab-pane" id="tab4">
                                                         <h3 class="block">Confirmation</h3>
                                                         <h4 class="form-section">Case details</h4>
-                                                        <% incident_id = Integer.parseInt(request.getParameter("id"));  %>
+                                                        <% incident_id = Integer.parseInt(request.getParameter("id"));
+                                                        	incident = incident_manager.retrieveSingleIncident(incident_id); %>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Type of Case: <%= incident_id %> </label>
+                                                            <label class="control-label col-md-3">Type of Case: <%= incident.getIncidentType() %> </label>
                                                             <div class="col-md-4">
                                                                 <p class="form-control-static" data-display=""> </p>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Postal Code:</label>
+                                                            <label class="control-label col-md-3">Postal Code: <%= incident.getLocation() %></label>
                                                             <div class="col-md-4">
                                                                 <p class="form-control-static" data-display=""> </p>
                                                             </div>
                                                         </div>
                                                          <div class="form-group">
-                                                            <label class="control-label col-md-3">Assistance Request:</label>
+                                                            <label class="control-label col-md-3">Assistance Request: <%= incident.getTypeOfAssistance() %></label>
                                                             <div class="col-md-4">
                                                                 <p class="form-control-static" data-display=""> </p>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Remarks:</label>
+                                                            <label class="control-label col-md-3">Remarks: <%= incident.getDescription() %></label>
                                                             <div class="col-md-4">
                                                                 <p class="form-control-static" data-display=""> </p>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Caller's Fullname:</label>
+                                                            <label class="control-label col-md-3">Caller's Fullname: <%= incident.getReporterName() %></label>
                                                             <div class="col-md-4">
                                                                 <p class="form-control-static" data-display=""> </p>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Caller's Phone:</label>
+                                                            <label class="control-label col-md-3">Caller's Phone: <%= incident.getReporterPhoneNumber() %></label>
                                                             <div class="col-md-4">
                                                                 <p class="form-control-static" data-display=""> </p>
                                                             </div>

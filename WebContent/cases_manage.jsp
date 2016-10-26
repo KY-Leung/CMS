@@ -327,7 +327,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                        
                                         <tbody>
                                         <% incidents = incident_manager.retrieveIncidents();
-                                        	for(Incident i : incidents) { 
+                                        	for(int counter = incidents.size()-1; counter >= 0; counter--) { 
+                                        		Incident i = incidents.get(counter); 
                                         		if (!i.isClosed()) {
                                    		%>
                                        		<tr>
@@ -355,94 +356,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         	
                                         <% }} %>
                                         
-                                            <tr>
-                                                <td> C0001 </td>
-                                                <td> Fire </td>
-                                                <td> 456780 </td>
-                                                <td> Emergency Ambulance </td>
-                                                <td></td>
-                                                <td> Donald Trump </td>
-                                                <td> 98765432 </td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li>
-                                                                <a href="cases_close.html">
-                                                                    <i class="icon-tag" ></i> Close </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> C0002 </td>
-                                                <td> Fire </td>
-                                                <td> 326743 </td>
-                                                <td> Fire-Fighting </td>
-                                                <td></td>
-                                                <td> Donald Trash </td>
-                                                <td> 81765432 </td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li>
-                                                                <a href="cases_close.html">
-                                                                    <i class="icon-tag" ></i> Close </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> C0003 </td>
-                                                <td> Fire </td>
-                                                <td> 456780 </td>
-                                                <td> Emergency Ambulance </td>
-                                                <td></td>
-                                                <td> Peter Pan </td>
-                                                <td> 98765432 </td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li>
-                                                                <a href="cases_close.html">
-                                                                    <i class="icon-tag" ></i> Close </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td> C0004 </td>
-                                                <td> Fire </td>
-                                                <td> 326743 </td>
-                                                <td> Fire-Fighting </td>
-                                                <td></td>
-                                                <td> Peter Pen </td>
-                                                <td> 96765432 </td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li>
-                                                                <a href="cases_close.html">
-                                                                    <i class="icon-tag" ></i> Close </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
