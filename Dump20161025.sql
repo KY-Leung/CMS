@@ -71,7 +71,7 @@ DROP TABLE IF EXISTS `fireincident`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fireincident` (
   `incidentID` int(11) NOT NULL,
-  `numberOfCasulties` int(11) DEFAULT NULL,
+  `numberOfCasualties` int(11) DEFAULT NULL,
   `firefightingTime` int(11) DEFAULT NULL,
   PRIMARY KEY (`incidentID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -239,4 +239,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-25 17:46:12
+-- Dump completed on 2016-10-26  9:33:10
