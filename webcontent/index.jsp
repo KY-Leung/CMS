@@ -15,6 +15,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
+<%@ page import='com.control.EmailDispatcher'%>
 <html lang="en">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
@@ -45,6 +46,10 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="./assets/layouts/layout2/css/google-map.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
+        
+        <% if (EmailDispatcher.email_dispatcher == null)
+			(new EmailDispatcher()).dispatchInformation(); 
+			%>
     <!-- END HEAD -->
 
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
