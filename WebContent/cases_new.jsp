@@ -274,13 +274,13 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item  active open">
-                                    <a href="cases_new.html" class="nav-link ">
+                                    <a href="cases_new.jsp" class="nav-link ">
                                         <span class="title">New</span>
                                         <span class="selected"></span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="cases_manage.html" class="nav-link ">
+                                    <a href="cases_manage.jsp" class="nav-link ">
                                         <span class="title">Manage</span>
                                     </a>
                                 </li>
@@ -319,7 +319,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </div>
                                 </div>
                                 <div class="portlet-body form">
-                                    <form class="form-horizontal" action="#" id="submit_form" method="POST">
+                                    <form class="form-horizontal" action="./add_new_case" id="submit_form" method="POST">
                                         <div class="form-wizard">
                                             <div class="form-body">
                                                 <ul class="nav nav-pills nav-justified steps">
@@ -550,7 +550,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <a href="javascript:;" class="btn btn-outline green button-next"> Continue
                                                             <i class="fa fa-angle-right"></i>
                                                         </a>
-                                                        <a href="#" onclick="$(this).closest('form').submit()" class="btn green button-submit" id="new_case"> Submit
+                                                        <a href="./add_new_case" onclick="submit_form()" class="btn green button-submit" id="new_case"> Submit
                                                             <i class="fa fa-check"></i>
                                                         </a>
                                                     </div>
@@ -559,6 +559,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </div>
                                     </form>
                                 </div>
+                            	<script>
+								function submit_form() {
+								    document.getElementById("submit_form").submit();
+								}
+								</script>
+                            	
                             </div>
                         </div>
                     </div>

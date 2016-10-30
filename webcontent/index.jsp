@@ -278,7 +278,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item  active open">
-                                    <a href="cases_new.html" class="nav-link ">
+                                    <a href="cases_new.jsp" class="nav-link ">
                                         <span class="title">New</span>
                                     </a>
                                 </li>
