@@ -362,14 +362,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             <div class="col-md-4">
                                                                 <div class="radio-list">
                                                                     <label>
-                                                                        <input type="radio" name="case" value="F" data-title="Fire" /> Fire </label>
+                                                                        <input type="radio" name="case" value="fire" data-title="Fire" /> Fire </label>
                                                                     <label>
-                                                                        <input type="radio" name="case" value="H" data-title="Haze" /> Haze </label>
+                                                                        <input type="radio" name="case" value="haze" data-title="Haze" /> Haze </label>
                                                                 </div>
                                                                 <div id="form_case_error"> </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
+                                                        <div class="form-group selective fire">
                                                             <label class="control-label col-md-3">Postal Code
                                                                 <span class="required"> * </span>
                                                             </label>
@@ -378,7 +378,52 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <span class="help-block"> Provide case's postal code </span>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
+                                                        <div class="form-group selective haze">
+                                                            <label class="control-label col-md-3">Central PSI
+                                                                <span class="required"> * </span>
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control" name="central_psi" />
+                                                                <span class="help-block"> Provide PSI for central area </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group selective haze">
+                                                            <label class="control-label col-md-3">North PSI
+                                                                <span class="required"> * </span>
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control" name="north_psi" />
+                                                                <span class="help-block"> Provide PSI for north area </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group selective haze">
+                                                            <label class="control-label col-md-3">South PSI
+                                                                <span class="required"> * </span>
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control" name="south_psi" />
+                                                                <span class="help-block"> Provide PSI for south area </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group selective haze">
+                                                            <label class="control-label col-md-3">East PSI
+                                                                <span class="required"> * </span>
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control" name="east_psi" />
+                                                                <span class="help-block"> Provide PSI for east area </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group selective haze">
+                                                            <label class="control-label col-md-3">West PSI
+                                                                <span class="required"> * </span>
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control" name="west_psi" />
+                                                                <span class="help-block"> Provide PSI for west area </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group selective compulsory">
                                                             <label class="control-label col-md-3">Assistance Request
                                                                 <span class="required"> * </span>
                                                             </label>
@@ -396,7 +441,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <div id="form_payment_error"> </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
+                                                        <div class="form-group selective compulsory">
                                                             <label class="control-label col-md-3">Remarks</label>
                                                             <div class="col-md-4">
                                                                 <textarea class="form-control" rows="3" name="remarks" placeholder="E.g. Building unit number"></textarea>
@@ -433,10 +478,40 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <p class="form-control-static" data-display="case"> </p>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
+                                                        <div class="form-group selective fire">
                                                             <label class="control-label col-md-3">Postal Code:</label>
                                                             <div class="col-md-4">
                                                                 <p class="form-control-static" data-display="postal_code"> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group selective haze">
+                                                            <label class="control-label col-md-3">Central PSI:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="central_psi"> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group selective haze">
+                                                            <label class="control-label col-md-3">North PSI:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="north_psi"> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group selective haze">
+                                                            <label class="control-label col-md-3">South PSI:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="south_psi"> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group selective haze">
+                                                            <label class="control-label col-md-3">East PSI:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="east_psi"> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group selective haze">
+                                                            <label class="control-label col-md-3">West PSI:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="west_psi"> </p>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -475,7 +550,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <a href="javascript:;" class="btn btn-outline green button-next"> Continue
                                                             <i class="fa fa-angle-right"></i>
                                                         </a>
-                                                        <a href="javascript:;" class="btn green button-submit" id="new_case"> Submit
+                                                        <a href="#" onclick="$(this).closest('form').submit()" class="btn green button-submit" id="new_case"> Submit
                                                             <i class="fa fa-check"></i>
                                                         </a>
                                                     </div>
@@ -850,6 +925,26 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="./assets/layouts/layout2/scripts/demo.min.js" type="text/javascript"></script>
         <script src="./assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
+        <style type="text/css">
+            .selective{
+                display: none;
+            }
+        </style>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $('input[type="radio"]').click(function(){
+                if($(this).attr("value")=="haze"){
+                    $(".selective").not(".haze").hide();
+                    $(".haze").show();
+                }
+                if($(this).attr("value")=="fire"){
+                    $(".selective").not(".fire").hide();
+                    $(".fire").show();
+                }
+            $(".compulsory").show();
+            });
+        });
+        </script>
     </body>
 
 </html>
