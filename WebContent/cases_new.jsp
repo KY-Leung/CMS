@@ -423,20 +423,18 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <span class="help-block"> Provide PSI for west area </span>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group selective compulsory">
-                                                            <label class="control-label col-md-3">Assistance Request
-                                                                <span class="required"> * </span>
-                                                            </label>
+                                                        <div class="form-group selective fire">
+                                                            <label class="control-label col-md-3">Assistance Request</label>
                                                             <div class="col-md-4">
                                                                 <div class="checkbox-list">
                                                                     <label>
-                                                                        <input type="checkbox" name="payment[]" value="1" data-title="Emergency Ambulance." /> Emergency Ambulance </label>
+                                                                        <input type="checkbox" name="request[]" value="1" data-title="Emergency Ambulance." /> Emergency Ambulance </label>
                                                                     <label>
-                                                                        <input type="checkbox" name="payment[]" value="2" data-title="Rescue and Evacuation." /> Rescue and Evacuation </label>
+                                                                        <input type="checkbox" name="request[]" value="2" data-title="Rescue and Evacuation." /> Rescue and Evacuation </label>
                                                                     <label>
-                                                                        <input type="checkbox" name="payment[]" value="3" data-title="Fire-Fighting." /> Fire-Fighting </label>
+                                                                        <input type="checkbox" name="request[]" value="3" data-title="Fire-Fighting." /> Fire-Fighting </label>
                                                                     <label>
-                                                                        <input type="checkbox" name="payment[]" value="4" data-title="Gas Leak Control." /> Gas Leak Control </label>
+                                                                        <input type="checkbox" name="request[]" value="4" data-title="Gas Leak Control." /> Gas Leak Control </label>
                                                                 </div>
                                                                 <div id="form_payment_error"> </div>
                                                             </div>
@@ -517,7 +515,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3">Assistance Request:</label>
                                                             <div class="col-md-4">
-                                                                <p class="form-control-static" data-display="payment[]"> </p>
+                                                                <p class="form-control-static" data-display="request[]"> </p>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
