@@ -334,7 +334,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <a href="#tab2" data-toggle="tab" class="step">
                                                             <span class="number"> 2 </span>
                                                             <span class="desc">
-                                                                <i class="fa fa-check"></i> Caller Particulars </span>
+                                                                <i class="fa fa-check"></i> Caller's Particulars </span>
                                                         </a>
                                                     </li>
                                                     <li>
@@ -354,7 +354,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <div class="alert alert-success display-none">
                                                         <button class="close" data-dismiss="alert"></button> Your form validation is successful! </div>
                                                     <div class="tab-pane active" id="tab1">
-                                                        <h3 class="block">Request case details</h3>
+                                                        <h3 class="block">Reporting Case Details</h3>
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3">Type of Case
                                                                 <span class="required"> * </span>
@@ -436,7 +436,6 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                     <label>
                                                                         <input type="checkbox" name="request[]" value="4" data-title="Gas Leak Control." /> Gas Leak Control </label>
                                                                 </div>
-                                                                <div id="form_payment_error"> </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group selective compulsory">
@@ -447,7 +446,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         </div>
                                                     </div>
                                                     <div class="tab-pane" id="tab2">
-                                                        <h3 class="block">Request caller particulars</h3>
+                                                        <h3 class="block">Caller's Particulars</h3>
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3">Fullname
                                                                 <span class="required"> * </span>
@@ -469,7 +468,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     </div>
                                                     <div class="tab-pane" id="tab4">
                                                         <h3 class="block">Confirmation</h3>
-                                                        <h4 class="form-section">Request case details</h4>
+                                                        <h4 class="form-section">Reporting Cse Details</h4>
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3">Type of Case:</label>
                                                             <div class="col-md-4">
@@ -512,7 +511,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <p class="form-control-static" data-display="west_psi"> </p>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
+                                                        <div class="form-group selective fire">
                                                             <label class="control-label col-md-3">Assistance Request:</label>
                                                             <div class="col-md-4">
                                                                 <p class="form-control-static" data-display="request[]"> </p>
@@ -524,15 +523,15 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <p class="form-control-static" data-display="remarks"> </p>
                                                             </div>
                                                         </div>
-                                                        <h4 class="form-section">Profile</h4>
+                                                        <h4 class="form-section">Caller's Particulars</h4>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Caller's Fullname:</label>
+                                                            <label class="control-label col-md-3">Fullname:</label>
                                                             <div class="col-md-4">
                                                                 <p class="form-control-static" data-display="fullname"> </p>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Caller's Phone:</label>
+                                                            <label class="control-label col-md-3">Phone Number:</label>
                                                             <div class="col-md-4">
                                                                 <p class="form-control-static" data-display="phone"> </p>
                                                             </div>
