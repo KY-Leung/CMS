@@ -2,6 +2,7 @@ package com.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -11,8 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.control.IncidentManager;
+import com.control.SettingsManager;
+import com.control.SmsDispatcher;
 import com.entity.EmergencyServicesInfo;
 import com.entity.Incident;
+import com.entity.User;
 
 /**
  * Servlet implementation class NewCaseServlet
@@ -87,6 +91,8 @@ public class NewCaseServlet extends HttpServlet {
 					   operator_name // to use from session after logging in 
 					   ); 
 			   incident_manager.createFireIncident(incident_key, -1, -1);
+			   String message = "Case Number: " + incident_key + "\nNew Fire Case in " + location + "." ; 
+			   dispatch_fire_info(message);
 			   break; 
 			   
 		   case "haze": 
@@ -113,6 +119,23 @@ public class NewCaseServlet extends HttpServlet {
 	   request.getRequestDispatcher("./index.jsp").forward(request, response);;
 	   
 	   return; 
+	}
+
+
+
+	private void dispatch_fire_info(String message) {
+		// TODO Auto-generated method stub
+		SettingsManager sm = new SettingsManager(""); 
+		ArrayList<User> users = sm.getFireInfoUsers(); 
+		ArrayList<String> phone_numbers = new ArrayList<String>(); 
+		
+		for (User user : users) {
+			phone_numbers.add(String.valueOf(user.getPhoneNumber())); 
+		}
+		
+		if(!phone_numbers.isEmpty()) {
+			SmsDispatcher.broadcastAllMessages(message, phone_numbers);
+		}
 	}
 
 }
