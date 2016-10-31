@@ -16,6 +16,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
 <%@ page import='com.control.EmailDispatcher'%>
+<%! int new_case_id = -1 ; %>
 <html lang="en">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
@@ -49,6 +50,14 @@ License: You must have a valid license purchased only from themeforest(the above
         
         <% if (EmailDispatcher.email_dispatcher == null)
 			(new EmailDispatcher()).dispatchInformation(); 
+			if (request.getAttribute("new_case_id") != null) {
+				new_case_id = (int) request.getAttribute("new_case_id"); 
+			 %>
+				<script>
+				alert("Case <%= new_case_id %> is opened."); 
+				</script>
+			
+			<% }
 			%>
     <!-- END HEAD -->
 

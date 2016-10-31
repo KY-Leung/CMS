@@ -374,7 +374,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <span class="required"> * </span>
                                                             </label>
                                                             <div class="col-md-4">
-                                                                <input type="text" class="form-control" name="postal_code" />
+                                                                <input type="number" class="form-control" name="postal_code" />
                                                                 <span class="help-block"> Provide case's postal code </span>
                                                             </div>
                                                         </div>
@@ -462,7 +462,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <span class="required"> * </span>
                                                             </label>
                                                             <div class="col-md-4">
-                                                                <input type="text" class="form-control" name="phone" />
+                                                                <input type="number" class="form-control" name="phone" />
                                                                 <span class="help-block"> Provide caller's phone number </span>
                                                             </div>
                                                         </div>
@@ -548,7 +548,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <a href="javascript:;" class="btn btn-outline green button-next"> Continue
                                                             <i class="fa fa-angle-right"></i>
                                                         </a>
-                                                        <a href="./add_new_case" onclick="submit_form()" class="btn green button-submit" id="new_case"> Submit
+                                                        <a href="#" onclick="submit_form()" class="btn green button-submit"> Submit
                                                             <i class="fa fa-check"></i>
                                                         </a>
                                                     </div>

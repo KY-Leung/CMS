@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.control.IncidentManager;
+import com.entity.EmergencyServicesInfo;
 import com.entity.Incident;
 
 /**
@@ -27,6 +28,8 @@ public class NewCaseServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,15 +42,16 @@ public class NewCaseServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("In NewCaseServlet doPost"); 
-		Enumeration<String> paramNames = request.getParameterNames();
-		// for testing
-	   while(paramNames.hasMoreElements()) {
-		   String paramName = (String)paramNames.nextElement();
-		   System.out.println("paramName: " + paramName); 
-		   String paramValue = request.getParameter(paramName);
-		   System.out.println("paramValue: " + paramValue);
-	   }
+		
+		// System.out.println("In NewCaseServlet doPost"); 
+//		Enumeration<String> paramNames = request.getParameterNames();
+//		// for testing
+//	   while(paramNames.hasMoreElements()) {
+//		   String paramName = (String)paramNames.nextElement();
+//		   System.out.println("paramName: " + paramName); 
+//		   String paramValue = request.getParameter(paramName);
+//		   System.out.println("paramValue: " + paramValue);
+//	   }
 	   
 	   IncidentManager incident_manager = new IncidentManager(); 
 	   
@@ -56,47 +60,59 @@ public class NewCaseServlet extends HttpServlet {
 //	   System.out.println("paramValue: " + paramValue);
 	   String reporter_name = request.getParameter("fullname"); 
 	   int reporter_phone_number = Integer.parseInt(request.getParameter("phone")); 
-	   String assistance_requested = "to do services"; 
-	   String location = request.getParameter("location"); 
+	   String[] assistance_requested = request.getParameterValues("request[]"); 
+	   String services = ""; 
+	   if (assistance_requested != null) {
+		   for(String s : assistance_requested) {
+			   int key = Integer.parseInt(s); 
+			   if(!services.isEmpty()) {
+				   services = services + ", "; 
+			   }
+			   services = services + EmergencyServicesInfo.services[key - 1]; 
+		   }
+	   }
+	   String location = request.getParameter("postal_code"); 
 	   String description = request.getParameter("remarks"); 
 	   String operator_name = "operator 1"; // to use from session after logging in
-	   
-	   
-	   
+	   int incident_key = -1; 
 	   switch(type_of_case) {
-	   case "fire": 
-		   int fire_key = incident_manager.createIncident(
-				   reporter_name,
-				   reporter_phone_number, 
-				   assistance_requested, 
-				   Incident.FIRE_INCIDENT, 
-				   location,
-				   description, 
-				   operator_name // to use from session after logging in 
-				   ); 
-		   incident_manager.createFireIncident(fire_key, -1, -1);
-		   break; 
-		   
-	   case "haze": 
-		   int haze_key = incident_manager.createIncident(
-				   reporter_name,
-				   reporter_phone_number, 
-				   assistance_requested, 
-				   Incident.HAZE_INFO, 
-				   location,
-				   description, 
-				   operator_name // to use from session after logging in 
-				   ); 
-		   incident_manager.createHazeInfo(haze_key, 
-				   Integer.parseInt(request.getParameter("central_psi")), 
-				   Integer.parseInt(request.getParameter("north_psi")),
-				   Integer.parseInt(request.getParameter("south_psi")), 
-				   Integer.parseInt(request.getParameter("east_psi")), 
-				   Integer.parseInt(request.getParameter("west_psi"))
-				   );
-		   break; 
-	   }
+		   	case "fire": 
+			   incident_key = incident_manager.createIncident(
+					   reporter_name,
+					   reporter_phone_number, 
+					   services, 
+					   Incident.FIRE_INCIDENT, 
+					   location,
+					   description, 
+					   operator_name // to use from session after logging in 
+					   ); 
+			   incident_manager.createFireIncident(incident_key, -1, -1);
+			   break; 
+			   
+		   case "haze": 
+			   incident_key = incident_manager.createIncident(
+					   reporter_name,
+					   reporter_phone_number, 
+					   services, 
+					   Incident.HAZE_INFO, 
+					   location,
+					   description, 
+					   operator_name // to use from session after logging in 
+					   ); 
+			   incident_manager.createHazeInfo(incident_key, 
+					   Integer.parseInt(request.getParameter("central_psi")), 
+					   Integer.parseInt(request.getParameter("north_psi")),
+					   Integer.parseInt(request.getParameter("south_psi")), 
+					   Integer.parseInt(request.getParameter("east_psi")), 
+					   Integer.parseInt(request.getParameter("west_psi"))
+					   );
+			   break; 
+	   }					
+	    
+	   request.setAttribute("new_case_id", incident_key);
+	   request.getRequestDispatcher("./index.jsp").forward(request, response);;
 	   
+	   return; 
 	}
 
 }
