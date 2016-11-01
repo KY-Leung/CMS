@@ -9,7 +9,8 @@ public class ConfigFactory{
 	final static String MY_SQL="mysql";
 	public static DbController getDbController(){
 		DbController db=null;
-		String dbString=getDbType();
+		//String dbString=getDbType();
+		String dbString=MY_SQL;
 		System.out.println("The db string is "+dbString);
 		switch(dbString){
 		case (MY_SQL):
