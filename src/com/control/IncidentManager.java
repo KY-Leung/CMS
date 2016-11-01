@@ -11,13 +11,14 @@ import com.entity.Incident;
 public class IncidentManager {
 	public int createIncident(String reporterName,int reporterPhoneNumber,String typeOfAssistance,String typeOfIncident,String location,String description,String operatorName){
 		int incidentID=1;
-		DbController db=new DbController();
+		DbController db=ConfigFactory.getDbController();
+		db.connect();
 		String query="insert into incident values(null,'"+reporterName+"',"+reporterPhoneNumber+",'"+typeOfIncident+"','"+location+"','"+typeOfAssistance+"','"+description+"',null,false,null,null,'"+operatorName+"')";
 		System.out.println(query);
-		db.updateSql(query);
+		db.updateQuery(query);
 		query="select last_insert_id() as last";
 		try{
-			ResultSet rs=db.executeSql(query);
+			ResultSet rs=db.executeQuery(query);
 			if(rs.next()){
 				incidentID=rs.getInt("last");
 			}
@@ -29,36 +30,40 @@ public class IncidentManager {
 		return incidentID;
 	}
 	public void createHazeInfo(int incidentID,int central,int north,int south,int east,int west){
-		DbController db=new DbController();
+		DbController db=ConfigFactory.getDbController();
+		db.connect();
 		String query="insert into hazeinfo values("+incidentID+","+central+","+north+","+south+","+east+","+west+")";
 		System.out.println(query);
-		db.updateSql(query);
+		db.updateQuery(query);
 		query="update incident set isClosed="+true+" where incidentID="+incidentID;
 		System.out.println(query);
-		db.updateSql(query);
+		db.updateQuery(query);
 		db.close();
 	}
 	
 	public void createFireIncident(int incidentID,int numberOfCasualties,int firefightingTime){
-		DbController db=new DbController();
+		DbController db=ConfigFactory.getDbController();
+		db.connect();
 		String query="insert into fireincident values("+incidentID+","+numberOfCasualties+","+firefightingTime+")";
-		db.updateSql(query);
+		db.updateQuery(query);
 		db.close();
 	}
 	public void closeIncident(int incidentID,String closeRemarks){
-		DbController db=new DbController();
+		DbController db=ConfigFactory.getDbController();
+		db.connect();
 		String query="update incident set isClosed="+true+",closureTimestamp=CURRENT_TIMESTAMP,closureRemarks='"+closeRemarks+"' where incidentID="+incidentID;
-		db.updateSql(query);
+		db.updateQuery(query);
 		db.close();
 		
 	}
 	public Incident retrieveSingleIncident(int incidentID){
 		Incident incident=null;
-		DbController db=new DbController();
+		DbController db=ConfigFactory.getDbController();
+		db.connect();
 		String query="select * from incident left join hazeinfo on incident.incidentID=hazeinfo.incidentID left join fireincident on incident.incidentID=fireincident.incidentID where incident.incidentID="+incidentID;
 		try{
 			System.out.println(query);
-			ResultSet rs=db.executeSql(query);
+			ResultSet rs=db.executeQuery(query);
 			while(rs.next()){
 				if(rs.getString("typeOfIncident").equals(Incident.FIRE_INCIDENT)){
 					FireIncident fIncident=new FireIncident();
@@ -92,15 +97,17 @@ public class IncidentManager {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		db.close();
 		return incident;
 	}
 	public ArrayList<Incident> retrieveIncidents(){
 		ArrayList<Incident> list=new ArrayList<Incident>();
 		Incident incident=null;
-		DbController db=new DbController();
+		DbController db=ConfigFactory.getDbController();
+		db.connect();
 		String query="select * from incident";
 		try{
-			ResultSet rs=db.executeSql(query);
+			ResultSet rs=db.executeQuery(query);
 			while(rs.next()){
 				incident=new Incident();
 				
@@ -121,14 +128,16 @@ public class IncidentManager {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		db.close();
 		return list;
 	}
 	public HazeInfo retrieveLatestHazeInfo(){
 		HazeInfo hi=new HazeInfo();
-		DbController db=new DbController();
+		DbController db=ConfigFactory.getDbController();
+		db.connect();
 		String query="select * from hazeinfo inner join incident on hazeinfo.incidentID=incident.incidentID order by incidentID DESC LIMIT 1";
 		try{
-			ResultSet rs=db.executeSql(query);
+			ResultSet rs=db.executeQuery(query);
 			if(rs.next()){
 				hi.setIncidentID(rs.getInt("incidentID"));
 				hi.setReporterName(rs.getString("reporterName"));
@@ -153,15 +162,17 @@ public class IncidentManager {
 		}catch(Exception e){
 			
 		}
+		db.close();
 		return hi;
 	}
 	public ArrayList<HazeInfo> retrieveHazeInfo(){
 		HazeInfo hi=null;
-		DbController db=new DbController();
+		DbController db=ConfigFactory.getDbController();
+		db.connect();
 		ArrayList<HazeInfo> list=new ArrayList<HazeInfo>();
 		String query="select * from hazeinfo inner join incident on hazeinfo.incidentID=incident.incidentID";
 		try{
-			ResultSet rs=db.executeSql(query);
+			ResultSet rs=db.executeQuery(query);
 			if(rs.next()){
 				hi=new HazeInfo();
 				hi.setIncidentID(rs.getInt("incidentID"));
@@ -187,15 +198,17 @@ public class IncidentManager {
 		}catch(Exception e){
 			
 		}
+		db.close();
 		return list;
 	}
 	public ArrayList<FireIncident> retrieveFireIncidents(){
 		FireIncident fi=null;
-		DbController db=new DbController();
+		DbController db=ConfigFactory.getDbController();
+		db.connect();
 		ArrayList<FireIncident> list=new ArrayList<FireIncident>();
 		String query="select * from fireincident inner join incident on fireincident.incidentID=incident.incidentID";
 		try{
-			ResultSet rs=db.executeSql(query);
+			ResultSet rs=db.executeQuery(query);
 			if(rs.next()){
 				fi=new FireIncident();
 				fi.setIncidentID(rs.getInt("incidentID"));
@@ -217,6 +230,7 @@ public class IncidentManager {
 		}catch(Exception e){
 			
 		}
+		db.close();
 		return list;
 	}
 	public static void main(String [] args){
@@ -229,14 +243,14 @@ public class IncidentManager {
 //	public void updateLocation(int incidentID,String location){
 //		DbController db=new DbController();
 //		String query="insert into publicuser values(";
-//		db.executeSql(query);
+//		db.executeQuery(query);
 //		db.close();
 //	}
 //	
 //	public void updateDescription(int incidentID,String description){
 //		DbController db=new DbController();
 //		String query="insert into publicuser values(";
-//		db.executeSql(query);
+//		db.executeQuery(query);
 //		db.close();
 //	}
 	
