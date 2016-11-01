@@ -77,7 +77,7 @@ public class NewCaseServlet extends HttpServlet {
 	   }
 	   String location = request.getParameter("postal_code"); 
 	   String description = request.getParameter("remarks"); 
-	   String operator_name = "operator 1"; // to use from session after logging in
+	   String operator_name = (String) request.getSession().getAttribute("username"); 
 	   int incident_key = -1; 
 	   switch(type_of_case) {
 		   	case "fire": 
