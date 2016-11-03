@@ -57,8 +57,15 @@ License: You must have a valid license purchased only from themeforest(the above
 				alert("Case <%= new_case_id %> is opened."); 
 				</script>
 			
-			<% }
-			%>
+			<% request.setAttribute("new_case_id", null); 
+			}
+			if (request.getAttribute("username") != null) {
+				%>
+				<script>
+				alert("Welcome! <%= request.getAttribute("username") %> ."); 
+				</script>
+			
+			<% request.setAttribute("username", null); } %>
     <!-- END HEAD -->
 
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
@@ -68,7 +75,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="page-header-inner ">
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
-                    <a href="index.html">
+                    <a href="index.jsp">
                         <img src="./assets/layouts/layout2/img/logo-default.png" alt="logo" class="logo-default" /> </a>
                     <div class="menu-toggler sidebar-toggler">
                         <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
@@ -198,7 +205,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <i class="icon-user"></i> My Profile </a>
                                     </li>
                                     <li>
-                                        <a href="page_user_login_1.html">
+                                        <a href="login.jsp">
                                             <i class="icon-key"></i> Log Out </a>
                                     </li>
                                 </ul>
@@ -248,7 +255,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item  ">
-                                    <a href="index.html" class="nav-link ">
+                                    <a href="index.jsp" class="nav-link ">
                                         <span class="title">Fire</span>
                                         <span class="selected"></span>
                                     </a>
