@@ -6,6 +6,18 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
+function convertToLat(postal_code) {
+  $.getJSON("http://maps.googleapis.com/maps/api/geocode/json?address=" + postal_code, function(result){
+      alert(result.results[0].geometry.location.lat);
+  });
+}
+
+function convertToLng(postal_code) {
+  $.getJSON("http://maps.googleapis.com/maps/api/geocode/json?address=" + postal_code, function(result){
+      alert(result.results[0].geometry.location.lng);
+  });
+}
+
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 1.355379, lng: 103.867744},
