@@ -68,7 +68,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			<% request.setAttribute("username", null); } %>
     <!-- END HEAD -->
 
-    <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid" onload="initMap()">
         <!-- BEGIN HEADER -->
         <div class="page-header navbar navbar-fixed-top">
             <!-- BEGIN HEADER INNER -->
@@ -307,7 +307,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END THEME LAYOUT SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="./assets/layouts/layout2/scripts/google-map.js" type="text/javascript"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAn2XDB3kPgcalI-ywGJIEbU1wZ4UNP0oQ&libraries=places&callback=initAutocomplete"
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAn2XDB3kPgcalI-ywGJIEbU1wZ4UNP0oQ&libraries=places"
          async defer></script>
     </body>
 
