@@ -171,7 +171,6 @@ License: You must have a valid license purchased only from themeforest(the above
                 
                 <div class="form-group margin-top-20 margin-bottom-20">
                     <label class="mt-checkbox mt-checkbox-outline">
-                        <input type="checkbox" name="remember" value="1" />
                         <input type="checkbox" name="tnc" /> I agree to the
                         <a href="javascript:;">Terms of Service </a> &
                         <a href="javascript:;">Privacy Policy </a>

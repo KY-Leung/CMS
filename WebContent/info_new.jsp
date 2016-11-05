@@ -21,7 +21,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <head>
         <meta charset="utf-8" />
-        <title>Report Case</title>
+        <title>Update Useful Info</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
@@ -160,7 +160,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                         </li>
                         -->
-                        <li class="nav-item active open ">
+                        <li class="nav-item ">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-layers"></i>
                                 <span class="title">Cases</span>
@@ -168,7 +168,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <span class="arrow open"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item  active open">
+                                <li class="nav-item  ">
                                     <a href="cases_new.jsp" class="nav-link ">
                                         <span class="title">New</span>
                                         <span class="selected"></span>
@@ -181,7 +181,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item ">
+                        <li class="nav-item active open ">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-check"></i>
                                 <span class="title">Useful Info</span>
@@ -189,7 +189,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <span class="arrow open"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item  ">
+                                <li class="nav-item  active open">
                                     <a href="info_new.jsp" class="nav-link ">
                                         <span class="title">New</span>
                                         <span class="selected"></span>
@@ -213,7 +213,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="portlet-title">
                                     <div class="caption">
                                         <i class=" icon-layers font-red"></i>
-                                        <span class="caption-subject font-red bold uppercase"> Reporting Case -
+                                        <span class="caption-subject font-red bold uppercase"> Updating Useful Information -
                                             <span class="step-title"> Step 1 of 3 </span>
                                         </span>
                                     </div>
@@ -238,7 +238,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <a href="#tab1" data-toggle="tab" class="step">
                                                             <span class="number"> 1 </span>
                                                             <span class="desc">
-                                                                <i class="fa fa-check"></i> Case Details </span>
+                                                                <i class="fa fa-check"></i> Useful Information Details </span>
                                                         </a>
                                                     </li>
                                                     <li>
@@ -265,7 +265,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <div class="alert alert-success display-none">
                                                         <button class="close" data-dismiss="alert"></button> Your form validation is successful! </div>
                                                     <div class="tab-pane active" id="tab1">
-                                                        <h3 class="block">Reporting Case Details</h3>
+                                                        <h3 class="block">Useful Information Details</h3>
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3">Type of Case
                                                                 <span class="required"> * </span>
@@ -273,86 +273,29 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             <div class="col-md-4">
                                                                 <div class="radio-list">
                                                                     <label>
-                                                                        <input type="radio" name="case" value="fire" data-title="Fire" /> Fire </label>
+                                                                        <input type="radio" name="case" value="shelter" data-title="Shelter" /> Bomb Shelter </label>
                                                                     <label>
-                                                                        <input type="radio" name="case" value="haze" data-title="Haze" /> Haze </label>
+                                                                        <input type="radio" name="case" value="mask" data-title="Mask" /> Free Mask </label>
                                                                 </div>
                                                                 <div id="form_case_error"> </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group selective fire">
+                                                        <div class="form-group selective mask">
+                                                            <label class="control-label col-md-3">Mask Type
+                                                                <span class="required"> * </span>
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control" name="mask_type" />
+                                                                <span class="help-block"> Provide mask type </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group selective compulsory">
                                                             <label class="control-label col-md-3">Postal Code
                                                                 <span class="required"> * </span>
                                                             </label>
                                                             <div class="col-md-4">
                                                                 <input type="text" class="form-control" name="postal_code" />
-                                                                <span class="help-block"> Provide case's postal code </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group selective haze">
-                                                            <label class="control-label col-md-3">Central PSI
-                                                                <span class="required"> * </span>
-                                                            </label>
-                                                            <div class="col-md-4">
-                                                                <input type="text" class="form-control" name="central_psi" />
-                                                                <span class="help-block"> Provide PSI for central area </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group selective haze">
-                                                            <label class="control-label col-md-3">North PSI
-                                                                <span class="required"> * </span>
-                                                            </label>
-                                                            <div class="col-md-4">
-                                                                <input type="text" class="form-control" name="north_psi" />
-                                                                <span class="help-block"> Provide PSI for north area </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group selective haze">
-                                                            <label class="control-label col-md-3">South PSI
-                                                                <span class="required"> * </span>
-                                                            </label>
-                                                            <div class="col-md-4">
-                                                                <input type="text" class="form-control" name="south_psi" />
-                                                                <span class="help-block"> Provide PSI for south area </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group selective haze">
-                                                            <label class="control-label col-md-3">East PSI
-                                                                <span class="required"> * </span>
-                                                            </label>
-                                                            <div class="col-md-4">
-                                                                <input type="text" class="form-control" name="east_psi" />
-                                                                <span class="help-block"> Provide PSI for east area </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group selective haze">
-                                                            <label class="control-label col-md-3">West PSI
-                                                                <span class="required"> * </span>
-                                                            </label>
-                                                            <div class="col-md-4">
-                                                                <input type="text" class="form-control" name="west_psi" />
-                                                                <span class="help-block"> Provide PSI for west area </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group selective fire">
-                                                            <label class="control-label col-md-3">Assistance Request</label>
-                                                            <div class="col-md-4">
-                                                                <div class="checkbox-list">
-                                                                    <label>
-                                                                        <input type="checkbox" name="request[]" value="1" data-title="Emergency Ambulance." /> Emergency Ambulance </label>
-                                                                    <label>
-                                                                        <input type="checkbox" name="request[]" value="2" data-title="Rescue and Evacuation." /> Rescue and Evacuation </label>
-                                                                    <label>
-                                                                        <input type="checkbox" name="request[]" value="3" data-title="Fire-Fighting." /> Fire-Fighting </label>
-                                                                    <label>
-                                                                        <input type="checkbox" name="request[]" value="4" data-title="Gas Leak Control." /> Gas Leak Control </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group selective compulsory">
-                                                            <label class="control-label col-md-3">Remarks</label>
-                                                            <div class="col-md-4">
-                                                                <textarea class="form-control" rows="3" name="remarks" placeholder="E.g. Building unit number"></textarea>
+                                                                <span class="help-block"> Provide postal code </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -379,59 +322,23 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     </div>
                                                     <div class="tab-pane" id="tab4">
                                                         <h3 class="block">Confirmation</h3>
-                                                        <h4 class="form-section">Reporting Cse Details</h4>
+                                                        <h4 class="form-section">Useful Information Details</h4>
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3">Type of Case:</label>
                                                             <div class="col-md-4">
                                                                 <p class="form-control-static" data-display="case"> </p>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group selective fire">
+                                                        <div class="form-group selective mask">
+                                                            <label class="control-label col-md-3">Mask Type:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="mask_type"> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group selective compulsory">
                                                             <label class="control-label col-md-3">Postal Code:</label>
                                                             <div class="col-md-4">
                                                                 <p class="form-control-static" data-display="postal_code"> </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group selective haze">
-                                                            <label class="control-label col-md-3">Central PSI:</label>
-                                                            <div class="col-md-4">
-                                                                <p class="form-control-static" data-display="central_psi"> </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group selective haze">
-                                                            <label class="control-label col-md-3">North PSI:</label>
-                                                            <div class="col-md-4">
-                                                                <p class="form-control-static" data-display="north_psi"> </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group selective haze">
-                                                            <label class="control-label col-md-3">South PSI:</label>
-                                                            <div class="col-md-4">
-                                                                <p class="form-control-static" data-display="south_psi"> </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group selective haze">
-                                                            <label class="control-label col-md-3">East PSI:</label>
-                                                            <div class="col-md-4">
-                                                                <p class="form-control-static" data-display="east_psi"> </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group selective haze">
-                                                            <label class="control-label col-md-3">West PSI:</label>
-                                                            <div class="col-md-4">
-                                                                <p class="form-control-static" data-display="west_psi"> </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group selective fire">
-                                                            <label class="control-label col-md-3">Assistance Request:</label>
-                                                            <div class="col-md-4">
-                                                                <p class="form-control-static" data-display="request[]"> </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="control-label col-md-3">Remarks:</label>
-                                                            <div class="col-md-4">
-                                                                <p class="form-control-static" data-display="remarks"> </p>
                                                             </div>
                                                         </div>
                                                         <h4 class="form-section">Caller's Particulars</h4>
@@ -488,7 +395,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="page-quick-sidebar">
                     <ul class="nav nav-tabs">
                         <li class="active">
-                            <a href="javascript:;" data-target="#quick_sidebar_tab_1" data-toggle="tab"> Settings</a>
+                            <a href="javascript:;" data-target="#quick_sidebar_tab_2" data-toggle="tab"> Settings</a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -570,13 +477,13 @@ License: You must have a valid license purchased only from themeforest(the above
         <script type="text/javascript">
         $(document).ready(function(){
             $('input[type="radio"]').click(function(){
-                if($(this).attr("value")=="haze"){
-                    $(".selective").not(".haze").hide();
-                    $(".haze").show();
+                if($(this).attr("value")=="mask"){
+                    $(".selective").not(".mask").hide();
+                    $(".mask").show();
                 }
-                if($(this).attr("value")=="fire"){
-                    $(".selective").not(".fire").hide();
-                    $(".fire").show();
+                if($(this).attr("value")=="shelter"){
+                    $(".selective").not(".shelter").hide();
+                    $(".shelter").show();
                 }
             $(".compulsory").show();
             });
