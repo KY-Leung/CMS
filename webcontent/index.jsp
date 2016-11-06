@@ -243,36 +243,43 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a href="javascript:;" data-target="#quick_sidebar_tab_1" data-toggle="tab"> Settings</a>
                         </li>
                     </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active page-quick-sidebar-settings" id="quick_sidebar_tab_1">
-                            <div class="page-quick-sidebar-settings-list">
-                                <h3 class="list-heading">Notifications Subscription</h3>
-                                <ul class="list-items borderless">
-                                    <li> Fire
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                    <li> Haze
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                    <li> Bomb Shelter
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                    <li> Free Mask
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                </ul>
-                                <h3 class="list-heading">Notifications Mode</h3>
-                                <ul class="list-items borderless">
-                                    <li> Web
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                    <li> SMS
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                    <li> Email
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                </ul>
-                                <div class="inner-content">
-                                    <button class="btn btn-success" id="demo_1">
-                                        <i class="icon-settings"></i> Save Changes</button>
+                    <form action="" id="user_subscription" method="POST">
+                        <div class="tab-content">
+                            <div class="tab-pane active page-quick-sidebar-settings" id="quick_sidebar_tab_1">
+                                <div class="page-quick-sidebar-settings-list">
+                                    <h3 class="list-heading">Notifications Subscription</h3>
+                                    <ul class="list-items borderless">
+                                        <li> Fire
+                                            <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                        <li> Haze
+                                            <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                        <li> Bomb Shelter
+                                            <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                        <li> Free Mask
+                                            <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                    </ul>
+                                    <h3 class="list-heading">Notifications Mode</h3>
+                                    <ul class="list-items borderless">
+                                        <li> Web
+                                            <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                        <li> SMS
+                                            <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                        <li> Email
+                                            <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                    </ul>
+                                    <div class="inner-content">
+                                        <button class="btn btn-success" id="demo_1">
+                                            <i href="#" onclick="submit_form()" class="icon-settings"></i> Save Changes</button>
+                                        <script>
+                                            function submit_form() {
+                                                document.getElementById("user_subscription").submit();
+                                            }
+                                        </script>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <!-- END QUICK SIDEBAR -->
