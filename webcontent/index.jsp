@@ -181,7 +181,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                         </li>
                         -->
-                        <li class="nav-item  ">
+                        <li class="nav-item operatorOnly">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-layers"></i>
                                 <span class="title">Cases</span>
@@ -200,7 +200,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item ">
+                        <li class="nav-item operatorOnly">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-check"></i>
                                 <span class="title">Useful Info</span>
@@ -306,6 +306,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="./assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
+        <script src="./assets/layouts/layout2/scripts/operator-access.js" type="text/javascript"></script>
         <script src="./assets/layouts/layout2/scripts/google-map.js" type="text/javascript"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAn2XDB3kPgcalI-ywGJIEbU1wZ4UNP0oQ&libraries=places"
          async defer></script>
