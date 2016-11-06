@@ -16,6 +16,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
 <%@ page import='com.control.EmailDispatcher'%>
+<%@ page import='com.control.UserController'%>
 <%! int new_case_id = -1 ; %>
 <html lang="en">
     <!--<![endif]-->
@@ -48,6 +49,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
         
+        
         <% if (EmailDispatcher.email_dispatcher == null)
 			(new EmailDispatcher()).dispatchInformation(); 
 			if (request.getAttribute("new_case_id") != null) {
@@ -58,14 +60,8 @@ License: You must have a valid license purchased only from themeforest(the above
 				</script>
 			
 			<% request.setAttribute("new_case_id", null); 
-			}
-			if (request.getAttribute("username") != null) {
-				%>
-				<script>
-				alert("Welcome! <%= request.getAttribute("username") %> ."); 
-				</script>
-			
-			<% request.setAttribute("username", null); } %>
+			} %>
+		
     <!-- END HEAD -->
 
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid" onload="initMap()">
@@ -277,6 +273,37 @@ License: You must have a valid license purchased only from themeforest(the above
             </div>
             <!-- END QUICK SIDEBAR -->
         </div>
+        <% if (session.getAttribute("username") == null) { %>
+			<script>
+			var elements = document.getElementsByClassName("nav-item operatorOnly");
+			for (var i = 0; i < elements.length; i++)
+				elements[i].style.visibility = 'hidden'; 	
+			// alert("we in first"); 
+			</script>
+		<% }
+		%>
+		
+		<% if (session.getAttribute("username") != null) { 
+			UserController user_controller = new UserController(); 
+			if(user_controller.getUserType((String) session.getAttribute("username")) == UserController.PUBLIC_USER) {
+				%>
+				<script>
+				
+				// alert("we in second"); 
+				var elements = document.getElementsByClassName("nav-item operatorOnly");
+				for (var i = 0; i < elements.length; i++)
+					elements[i].style.visibility = 'hidden'; 	
+				</script>
+			<% } } %>
+		
+		<% if (request.getAttribute("username") != null) {
+			%>
+			<script>
+			alert("Welcome! <%= request.getAttribute("username") %> ."); 
+			</script>
+		
+		<% request.setAttribute("username", null); } %>
+        
         <!-- END CONTAINER -->
         <!--[if lt IE 9]>
 <script src="./assets/global/plugins/respond.min.js"></script>
