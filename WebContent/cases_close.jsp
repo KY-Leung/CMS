@@ -82,14 +82,13 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="./assets/layouts/layout2/img/avatar3_small.jpg" />
-                                    <span class="username username-hide-on-mobile"> Nick </span>
+                                    <span class="username username-hide-on-mobile">Menu</span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
-                                        <a href="page_user_login_1.html">
-                                            <i class="icon-key"></i> Log Out </a>
+                                        <a href="login.jsp">
+                                            <i class="icon-key"></i> Log In </a>
                                     </li>
                                 </ul>
                             </li>
@@ -142,17 +141,17 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="" class="nav-link ">
+                                    <a href="index.jsp" class="nav-link ">
                                         <span class="title">Haze</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="" class="nav-link ">
+                                    <a href="index.jsp" class="nav-link ">
                                         <span class="title">Bomb Shelter</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="" class="nav-link ">
+                                    <a href="index.jsp" class="nav-link ">
                                         <span class="title">Free Masek</span>
                                     </a>
                                 </li>
@@ -176,13 +175,13 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item  active open">
-                                    <a href="cases_new.html" class="nav-link ">
+                                    <a href="cases_new.jsp" class="nav-link ">
                                         <span class="title">New</span>
                                         <span class="selected"></span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="cases_manage.html" class="nav-link ">
+                                    <a href="cases_manage.jsp" class="nav-link ">
                                         <span class="title">Manage</span>
                                     </a>
                                 </li>
@@ -416,6 +415,10 @@ License: You must have a valid license purchased only from themeforest(the above
 			var elements = document.getElementsByClassName("nav-item operatorOnly");
 			for (var i = 0; i < elements.length; i++)
 				elements[i].style.visibility = 'hidden'; 	
+			
+			elements = document.getElementsByClassName("dropdown dropdown-extended quick-sidebar-toggler"); 
+			for (var i = 0; i < elements.length; i++)
+				elements[i].style.visibility = 'hidden';
 			// alert("we in first"); 
 			</script>
 		<% }
@@ -432,7 +435,13 @@ License: You must have a valid license purchased only from themeforest(the above
 				for (var i = 0; i < elements.length; i++)
 					elements[i].style.visibility = 'hidden'; 	
 				</script>
-			<% } } %>
+			<% } else { %> 
+				<script> 	
+			var elements = document.getElementsByClassName("dropdown dropdown-extended quick-sidebar-toggler"); 
+			for (var i = 0; i < elements.length; i++)
+				elements[i].style.visibility = 'hidden'; 
+			</script>
+			<% }} %>
         <!-- END CONTAINER -->
         <!--[if lt IE 9]>
 <script src="./assets/global/plugins/respond.min.js"></script>
@@ -470,7 +479,6 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="./assets/layouts/layout2/scripts/demo.min.js" type="text/javascript"></script>
         <script src="./assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
-        <script src="./assets/layouts/layout2/scripts/operator-access.js" type="text/javascript"></script>
     </body>
 
 </html>
