@@ -56,7 +56,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="page-header-inner ">
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
-                    <a href="index.html">
+                    <a href="index.jsp">
                         <img src="./assets/layouts/layout2/img/logo-default.png" alt="logo" class="logo-default" /> </a>
                     <div class="menu-toggler sidebar-toggler">
                         <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
@@ -130,7 +130,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item  ">
-                                    <a href="index.html" class="nav-link ">
+                                    <a href="index.jsp" class="nav-link ">
                                         <span class="title">Fire</span>
                                     </a>
                                 </li>
@@ -230,7 +230,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </div>
                                 </div>
                                 <div class="portlet-body form">
-                                    <form class="form-horizontal" action="./add_new_case" id="submit_form" method="POST">
+                                    <form class="form-horizontal" action="./add_new_info" id="submit_form" method="POST">
                                         <div class="form-wizard">
                                             <div class="form-body">
                                                 <ul class="nav nav-pills nav-justified steps">
