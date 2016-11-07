@@ -24,6 +24,10 @@
     <servlet-name>User Settings Servlet</servlet-name>
     <servlet-class>com.servlet.ChangeUserSettingsServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Register Servlet</servlet-name>
+    <servlet-class>com.servlet.RegisterServlet</servlet-class>
+  </servlet>
   
   
   <servlet-mapping>
@@ -41,5 +45,9 @@
   <servlet-mapping>
     <servlet-name>User Settings Servlet</servlet-name>
     <url-pattern>/change_user_settings</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Register Servlet</servlet-name>
+    <url-pattern>/register</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.control.SettingsManager;
 import com.control.UserController;
 
 /**
@@ -62,6 +63,11 @@ public class RegisterServlet extends HttpServlet {
 		   String email = request.getParameter("email"); 
 		   int phone_number = Integer.parseInt(request.getParameter("phonenumber"));
 		   user_controller.createUser(username, password, fullname, phone_number, 0);
+		   
+		   // create settings
+		   SettingsManager settings_manager = new SettingsManager(username); 
+		   settings_manager.createSettings(false, false, false, false, false);
+		   
 		   request.setAttribute("account created", username);
 		   request.getRequestDispatcher("./login.jsp").forward(request, response);;
 	   }
