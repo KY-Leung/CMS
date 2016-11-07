@@ -100,14 +100,13 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="./assets/layouts/layout2/img/avatar3_small.jpg" />
-                                    <span class="username username-hide-on-mobile"> Nick </span>
+                                    <span class="username username-hide-on-mobile">Menu</span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
                                         <a href="login.jsp">
-                                            <i class="icon-key"></i> Log Out </a>
+                                            <i class="icon-key"></i> Log In </a>
                                     </li>
                                 </ul>
                             </li>
@@ -266,8 +265,6 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </ul>
                                     <h3 class="list-heading">Notifications Mode</h3>
                                     <ul class="list-items borderless">
-                                        <li> Web
-                                            <input type="checkbox" class="make-switch" name="web" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
                                         <li> SMS
                                             <input type="checkbox" class="make-switch" name="sms" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
                                         <li> Email
