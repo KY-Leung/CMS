@@ -65,7 +65,8 @@ public class ChangeUserSettingsServlet extends HttpServlet {
 		   settings_manager.updateSms(sms_notification);
 	   }
 	   
-	   response.sendRedirect("./index.jsp");
+	   request.setAttribute("settings_changed", true);
+	   request.getRequestDispatcher("./index.jsp").forward(request, response);;
 	}
 
 }

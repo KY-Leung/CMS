@@ -71,6 +71,10 @@ License: You must have a valid license purchased only from themeforest(the above
 			
 			
 			<%  request.setAttribute("new_info_message", null); } %>
+			
+		<% if (request.getAttribute("settings_changed") != null && (boolean) request.getAttribute("settings_changed")) { %>
+			<script>alert("Settings updated!");  </script>
+			<%  request.setAttribute("settings_changed", null); } %>
 		
     <!-- END HEAD -->
 
