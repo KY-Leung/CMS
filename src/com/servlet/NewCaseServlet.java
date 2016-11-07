@@ -47,21 +47,19 @@ public class NewCaseServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// System.out.println("In NewCaseServlet doPost"); 
-//		Enumeration<String> paramNames = request.getParameterNames();
-//		// for testing
-//	   while(paramNames.hasMoreElements()) {
-//		   String paramName = (String)paramNames.nextElement();
-//		   System.out.println("paramName: " + paramName); 
-//		   String paramValue = request.getParameter(paramName);
-//		   System.out.println("paramValue: " + paramValue);
-//	   }
+		/* System.out.println("In NewCaseServlet doPost"); 
+		Enumeration<String> paramNames = request.getParameterNames();
+		// for testing
+	   while(paramNames.hasMoreElements()) {
+		   String paramName = (String)paramNames.nextElement();
+		   System.out.println("paramName: " + paramName); 
+		   String paramValue = request.getParameter(paramName);
+		   System.out.println("paramValue: " + paramValue);
+	   }*/
 	   
 	   IncidentManager incident_manager = new IncidentManager(); 
 	   
 	   String type_of_case = request.getParameter("case"); 
-//	   String paramValue = request.getParameter("payment[]");
-//	   System.out.println("paramValue: " + paramValue);
 	   String reporter_name = request.getParameter("fullname"); 
 	   int reporter_phone_number = Integer.parseInt(request.getParameter("phone")); 
 	   String[] assistance_requested = request.getParameterValues("request[]"); 

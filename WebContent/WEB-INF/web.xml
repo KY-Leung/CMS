@@ -13,12 +13,20 @@
     <servlet-class>com.servlet.NewCaseServlet</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>New Info Servlet</servlet-name>
+    <servlet-class>com.servlet.NewInfoServlet</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>Login Servlet</servlet-name>
     <servlet-class>com.servlet.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>New Case Servlet</servlet-name>
     <url-pattern>/add_new_case</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>New Info Servlet</servlet-name>
+    <url-pattern>/add_new_info</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Login Servlet</servlet-name>
