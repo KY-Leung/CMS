@@ -15,6 +15,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
+<%@ page import='com.control.UserController'%>
 <html lang="en">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
@@ -75,14 +76,13 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="./assets/layouts/layout2/img/avatar3_small.jpg" />
-                                    <span class="username username-hide-on-mobile"> Nick </span>
+                                    <span class="username username-hide-on-mobile">Menu</span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
-                                        <a href="page_user_login_1.html">
-                                            <i class="icon-key"></i> Log Out </a>
+                                        <a href="login.jsp">
+                                            <i class="icon-key"></i> Log In </a>
                                     </li>
                                 </ul>
                             </li>
@@ -432,6 +432,38 @@ License: You must have a valid license purchased only from themeforest(the above
             </div>
             <!-- END QUICK SIDEBAR -->
         </div>
+        <% if (session.getAttribute("username") == null) { %>
+			<script>
+			var elements = document.getElementsByClassName("nav-item operatorOnly");
+			for (var i = 0; i < elements.length; i++)
+				elements[i].style.visibility = 'hidden'; 	
+			
+			elements = document.getElementsByClassName("dropdown dropdown-extended quick-sidebar-toggler"); 
+			for (var i = 0; i < elements.length; i++)
+				elements[i].style.visibility = 'hidden';
+			// alert("we in first"); 
+			</script>
+		<% }
+		%>
+		
+		<% if (session.getAttribute("username") != null) { 
+			UserController user_controller = new UserController(); 
+			if(user_controller.getUserType((String) session.getAttribute("username")) == UserController.PUBLIC_USER) {
+				%>
+				<script>
+				
+				// alert("we in second"); 
+				var elements = document.getElementsByClassName("nav-item operatorOnly");
+				for (var i = 0; i < elements.length; i++)
+					elements[i].style.visibility = 'hidden'; 	
+				</script>
+			<% } else { %> 
+				<script> 	
+			var elements = document.getElementsByClassName("dropdown dropdown-extended quick-sidebar-toggler"); 
+			for (var i = 0; i < elements.length; i++)
+				elements[i].style.visibility = 'hidden'; 
+			</script>
+			<% }} %>
         <!-- END CONTAINER -->
         <!--[if lt IE 9]>
 <script src="./assets/global/plugins/respond.min.js"></script>
@@ -469,7 +501,6 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="./assets/layouts/layout2/scripts/demo.min.js" type="text/javascript"></script>
         <script src="./assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
-        <script src="./assets/layouts/layout2/scripts/operator-access.js" type="text/javascript"></script>
         <style type="text/css">
             .selective{
                 display: none;
