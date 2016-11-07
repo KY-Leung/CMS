@@ -135,17 +135,17 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="" class="nav-link ">
+                                    <a href="index.jsp" class="nav-link ">
                                         <span class="title">Haze</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="" class="nav-link ">
+                                    <a href="index.jsp" class="nav-link ">
                                         <span class="title">Bomb Shelter</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="" class="nav-link ">
+                                    <a href="index.jsp" class="nav-link ">
                                         <span class="title">Free Masek</span>
                                     </a>
                                 </li>

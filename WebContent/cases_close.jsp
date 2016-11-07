@@ -141,17 +141,17 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="" class="nav-link ">
+                                    <a href="index.jsp" class="nav-link ">
                                         <span class="title">Haze</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="" class="nav-link ">
+                                    <a href="index.jsp" class="nav-link ">
                                         <span class="title">Bomb Shelter</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="" class="nav-link ">
+                                    <a href="index.jsp" class="nav-link ">
                                         <span class="title">Free Masek</span>
                                     </a>
                                 </li>
@@ -175,13 +175,13 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item  active open">
-                                    <a href="cases_new.html" class="nav-link ">
+                                    <a href="cases_new.jsp" class="nav-link ">
                                         <span class="title">New</span>
                                         <span class="selected"></span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="cases_manage.html" class="nav-link ">
+                                    <a href="cases_manage.jsp" class="nav-link ">
                                         <span class="title">Manage</span>
                                     </a>
                                 </li>
