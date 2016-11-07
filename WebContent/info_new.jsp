@@ -404,22 +404,22 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <h3 class="list-heading">Notifications Subscription</h3>
                                 <ul class="list-items borderless">
                                     <li> Fire
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                        <input type="checkbox" class="make-switch" name="fire" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
                                     <li> Haze
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                        <input type="checkbox" class="make-switch" name="haze" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
                                     <li> Bomb Shelter
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                        <input type="checkbox" class="make-switch" name="shelter" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
                                     <li> Free Mask
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                        <input type="checkbox" class="make-switch" name="mask" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
                                 </ul>
                                 <h3 class="list-heading">Notifications Mode</h3>
                                 <ul class="list-items borderless">
                                     <li> Web
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                        <input type="checkbox" class="make-switch" name="web" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
                                     <li> SMS
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                        <input type="checkbox" class="make-switch" name="sms" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
                                     <li> Email
-                                        <input type="checkbox" class="make-switch" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                        <input type="checkbox" class="make-switch" name="email" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
                                 </ul>
                                 <div class="inner-content">
                                     <button class="btn btn-success" id="demo_1">
