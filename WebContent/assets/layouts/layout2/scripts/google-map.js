@@ -21,7 +21,7 @@ function convertToLng(postal_code) {
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 1.355379, lng: 103.867744},
-    zoom: 16,
+    zoom: 15,
     mapTypeId: 'roadmap'
   });
 
@@ -40,6 +40,9 @@ function initMap() {
     fire: {
       icon: './assets/layouts/layout2/img/fire.png'
     },
+    haze: {
+      icon: './assets/layouts/layout2/img/haze.png'
+    },
     shelter: {
       icon: './assets/layouts/layout2/img/shelter.png'
     },
@@ -47,14 +50,25 @@ function initMap() {
       icon: './assets/layouts/layout2/img/mask.png'
     }
   };
-  var typeOfEvent = 'fire';
-  var locations = [
+  var hazeLocation = [
+    ['Central PSI', 1.30484250, 103.8318222],
+    ['North PSI', 1.4304, 103.8354],
+    ['South PSI', 1.2642, 103.8203],
+    ['East PSI', 1.3236, 103.9273],
+    ['West PSI', 1.3329, 103.7436]
+  ];
+  // TO BE CHANGED
+  var typeOfEvent = 'haze';
+  // Format all events except for haze
+  var mapInfo = [
     ['Bondi Beach', 1.318175, 103.883086],
     ['Coogee Beach', 1.328174, 103.883086],
     ['Cronulla Beach', 1.338173, 103.883086],
     ['Manly Beach', 1.348172, 103.883086],
     ['Maroubra Beach', 1.358171, 103.883086]
   ];
+  // Format for haze only
+  var mapInfo = [120, 121, 122, 123, 124];
 
   // FOR SEARCH
   // Bias the SearchBox results towards current map's viewport.
@@ -136,20 +150,48 @@ function initMap() {
     handleLocationError(false, infoWindow, map.getCenter());
   }
 
-  // FOR MARKERS & INFO WINDOW - Create makers from locations
-  for (i = 0; i < locations.length; i++) {  
-    marker = new google.maps.Marker({
-      position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-      icon: icons[typeOfEvent].icon,
-      map: map
-    });
+  // FOR MARKERS & INFO WINDOW - Create makers from location
+  switch(typeOfEvent) {
+    case "haze":
+        for (i = 0; i < mapInfo.length; i++) {  
+          marker = new google.maps.Marker({
+            position: new google.maps.LatLng(hazeLocation[i][1], hazeLocation[i][2]),
+            icon: icons[typeOfEvent].icon,
+            map: map
+          });
 
-    // Create info window for each marker
-    google.maps.event.addListener(marker, 'click', (function(marker, i) {
-      return function() {
-        infowindow.setContent(locations[i][0]);
-        infowindow.open(map, marker);
-      }
-    })(marker, i));
+          // Create info window for each marker
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+              var contentString = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h4 id="firstHeading" class="firstHeading"><b>' + hazeLocation[i][0] + '</b></h4>'+
+              '<div id="bodyContent">'+
+              '<h4>' + mapInfo[i] + '</h4>'+
+              '</div>'+
+              '</div>';
+              infowindow.setContent(contentString);
+              infowindow.open(map, marker);
+            }
+          })(marker, i));
+        }
+        break;
+    default:
+        for (i = 0; i < mapInfo.length; i++) {  
+          marker = new google.maps.Marker({
+            position: new google.maps.LatLng(mapInfo[i][1], mapInfo[i][2]),
+            icon: icons[typeOfEvent].icon,
+            map: map
+          });
+
+          // Create info window for each marker
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+              infowindow.setContent(mapInfo[i][0]);
+              infowindow.open(map, marker);
+            }
+          })(marker, i));
+        }
   }
 }
