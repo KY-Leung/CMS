@@ -51,11 +51,11 @@ function initMap() {
     }
   };
   var hazeLocation = [
-    ['Central PSI', 1.30484250, 103.8318222],
-    ['North PSI', 1.4304, 103.8354],
-    ['South PSI', 1.2642, 103.8203],
-    ['East PSI', 1.3236, 103.9273],
-    ['West PSI', 1.3329, 103.7436]
+    ['Central PSI', 1.35735,103.82],
+    ['North PSI', 1.41803, 103.82],
+    ['South PSI', 1.29587, 103.82],
+    ['East PSI', 1.35735, 103.94],
+    ['West PSI', 1.35735,103.7]
   ];
   // TO BE CHANGED
   var typeOfEvent = 'haze';
