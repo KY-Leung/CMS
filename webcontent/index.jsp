@@ -249,7 +249,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a href="javascript:;" data-target="#quick_sidebar_tab_1" data-toggle="tab"> Settings</a>
                         </li>
                     </ul>
-                    <form action="" id="user_subscription" method="POST">
+                    <form action="./change_user_settings" id="user_subscription" method="POST">
                         <div class="tab-content">
                             <div class="tab-pane active page-quick-sidebar-settings" id="quick_sidebar_tab_1">
                                 <div class="page-quick-sidebar-settings-list">
@@ -295,6 +295,10 @@ License: You must have a valid license purchased only from themeforest(the above
 			var elements = document.getElementsByClassName("nav-item operatorOnly");
 			for (var i = 0; i < elements.length; i++)
 				elements[i].style.visibility = 'hidden'; 	
+			
+			elements = document.getElementsByClassName("dropdown dropdown-extended quick-sidebar-toggler"); 
+			for (var i = 0; i < elements.length; i++)
+				elements[i].style.visibility = 'hidden';
 			// alert("we in first"); 
 			</script>
 		<% }
@@ -311,7 +315,13 @@ License: You must have a valid license purchased only from themeforest(the above
 				for (var i = 0; i < elements.length; i++)
 					elements[i].style.visibility = 'hidden'; 	
 				</script>
-			<% } } %>
+			<% } else { %> 
+				<script> 	
+			var elements = document.getElementsByClassName("dropdown dropdown-extended quick-sidebar-toggler"); 
+			for (var i = 0; i < elements.length; i++)
+				elements[i].style.visibility = 'hidden'; 
+			</script>
+			<% }} %>
 		
 		<% if (request.getAttribute("username") != null) {
 			%>
