@@ -38,16 +38,15 @@ public class NewInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		 System.out.println("In NewInfoServlet doPost"); 
-		Enumeration<String> paramNames = request.getParameterNames();
-		// for testing
-	   while(paramNames.hasMoreElements()) {
-		   String paramName = (String)paramNames.nextElement();
-		   System.out.println("paramName: " + paramName); 
-		   String paramValue = request.getParameter(paramName);
-		   System.out.println("paramValue: " + paramValue);
-	   }
+//		System.out.println("In NewInfoServlet doPost"); 
+//		Enumeration<String> paramNames = request.getParameterNames();
+//		// for testing
+//	   while(paramNames.hasMoreElements()) {
+//		   String paramName = (String)paramNames.nextElement();
+//		   System.out.println("paramName: " + paramName); 
+//		   String paramValue = request.getParameter(paramName);
+//		   System.out.println("paramValue: " + paramValue);
+//	   }
 	   
 	   InfoManager info_manager = new InfoManager(); 
 	   String info_type = request.getParameter("case"); 

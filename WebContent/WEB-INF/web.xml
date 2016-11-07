@@ -20,6 +20,12 @@
     <servlet-name>Login Servlet</servlet-name>
     <servlet-class>com.servlet.LoginServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>User Settings Servlet</servlet-name>
+    <servlet-class>com.servlet.ChangeUserSettingsServlet</servlet-class>
+  </servlet>
+  
+  
   <servlet-mapping>
     <servlet-name>New Case Servlet</servlet-name>
     <url-pattern>/add_new_case</url-pattern>
@@ -31,5 +37,9 @@
   <servlet-mapping>
     <servlet-name>Login Servlet</servlet-name>
     <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>User Settings Servlet</servlet-name>
+    <url-pattern>/change_user_settings</url-pattern>
   </servlet-mapping>
 </web-app>
