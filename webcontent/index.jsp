@@ -17,7 +17,9 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--[if !IE]><!-->
 <%@ page import='com.control.EmailDispatcher'%>
 <%@ page import='com.control.UserController'%>
-<%! int new_case_id = -1 ; %>
+<%@ page isELIgnored="false" %>
+
+<%! int new_case_id = -1 ; String new_info_message = ""; %>
 <html lang="en">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
@@ -51,16 +53,24 @@ License: You must have a valid license purchased only from themeforest(the above
         
         
         <% if (EmailDispatcher.email_dispatcher == null)
-			(new EmailDispatcher()).dispatchInformation(); 
-			if (request.getAttribute("new_case_id") != null) {
-				new_case_id = (int) request.getAttribute("new_case_id"); 
-			 %>
-				<script>
-				alert("Case <%= new_case_id %> is opened."); 
-				</script>
+			(new EmailDispatcher()).dispatchInformation(); %>
 			
-			<% request.setAttribute("new_case_id", null); 
-			} %>
+		<% if (request.getAttribute("new_case_id") != null) {
+			new_case_id = (int) request.getAttribute("new_case_id"); 
+		 %>
+			<script>
+			alert("Case <%= new_case_id %> is opened."); 
+			</script>
+		<%  request.setAttribute("new_case_id", null); } %>
+		
+			
+		<% if (request.getAttribute("new_info_message") != null) {
+				new_info_message = (String) request.getAttribute("new_info_message"); 
+				System.out.println(new_info_message); %>
+			<script>alert("New <%= new_info_message %> .");  </script>
+			
+			
+			<%  request.setAttribute("new_info_message", null); } %>
 		
     <!-- END HEAD -->
 
@@ -340,7 +350,6 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="./assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
-        <script src="./assets/layouts/layout2/scripts/operator-access.js" type="text/javascript"></script>
         <script src="./assets/layouts/layout2/scripts/google-map.js" type="text/javascript"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAn2XDB3kPgcalI-ywGJIEbU1wZ4UNP0oQ&libraries=places"
          async defer></script>

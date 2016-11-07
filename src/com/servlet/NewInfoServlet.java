@@ -65,7 +65,7 @@ public class NewInfoServlet extends HttpServlet {
 		   info_manager.createMaskInfo(location, mask_type); break; 
 	   }
 	   
-	   request.setAttribute("new_info_message", info_type + " at " + location + " created!");
+	   request.setAttribute("new_info_message", info_type + " at location " + location + " created");
 	   request.getRequestDispatcher("./index.jsp").forward(request, response);;
 	   
 	   return;
