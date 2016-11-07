@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.control.SettingsManager;
+
 /**
  * Servlet implementation class ChangeUserSettings
  */
@@ -37,17 +39,33 @@ public class ChangeUserSettingsServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("In NewInfoServlet doPost"); 
-		Enumeration<String> paramNames = request.getParameterNames();
-		// for testing
-	   while(paramNames.hasMoreElements()) {
-		   String paramName = (String)paramNames.nextElement();
-		   System.out.println("paramName: " + paramName); 
-		   String paramValue = request.getParameter(paramName);
-		   System.out.println("paramValue: " + paramValue);
+//		Enumeration<String> paramNames = request.getParameterNames();
+//		// for testing
+//	   while(paramNames.hasMoreElements()) {
+//		   String paramName = (String)paramNames.nextElement();
+//		   System.out.println("paramName: " + paramName); 
+//		   String paramValue = request.getParameter(paramName);
+//		   System.out.println("paramValue: " + paramValue);
+//	   }
+	   
+	   boolean fire_notification = request.getParameter("fire") != null; 
+	   boolean haze_notification = request.getParameter("haze") != null; 
+	   boolean shelter_notification = request.getParameter("shelter") != null; 
+	   boolean mask_notification = request.getParameter("mask") != null; 
+	   boolean sms_notification = request.getParameter("sms") != null; 
+	   boolean email_notification = request.getParameter("email") != null; 
+	   String user_name = (String) request.getSession().getAttribute("username"); 
+	   
+	   if(user_name != null) {
+		   SettingsManager settings_manager = new SettingsManager(user_name); 
+		   settings_manager.updateFireInfo(fire_notification);
+		   settings_manager.updateHazeInfo(shelter_notification);
+		   settings_manager.updateBombshelterinfo(shelter_notification);
+		   settings_manager.updateMaskInfo(mask_notification);
+		   settings_manager.updateSms(sms_notification);
 	   }
-		
-		
-		doGet(request, response);
+	   
+	   response.sendRedirect("./index.jsp");
 	}
 
 }

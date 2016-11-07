@@ -266,8 +266,6 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </ul>
                                     <h3 class="list-heading">Notifications Mode</h3>
                                     <ul class="list-items borderless">
-                                        <li> Web
-                                            <input type="checkbox" class="make-switch" name="web" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
                                         <li> SMS
                                             <input type="checkbox" class="make-switch" name="sms" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
                                         <li> Email
