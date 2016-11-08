@@ -17,9 +17,12 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--[if !IE]><!-->
 <%@ page import='com.control.EmailDispatcher'%>
 <%@ page import='com.control.UserController'%>
+<%@ page import='com.control.IncidentManager'%>
+<%@ page import='com.entity.HazeInfo'%>
+<%@ page import='java.util.ArrayList'%>
 <%@ page isELIgnored="false" %>
 
-<%! int new_case_id = -1 ; String new_info_message = ""; %>
+<%! int new_case_id = -1 ; String new_info_message = ""; HazeInfo latest_haze_info = new HazeInfo();  %>
 <html lang="en">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
@@ -76,12 +79,26 @@ License: You must have a valid license purchased only from themeforest(the above
 			<script>alert("Settings updated!");  </script>
 			<%  request.setAttribute("settings_changed", null); } %>
 		
+		<% 	IncidentManager incident_manager = new IncidentManager(); 
+			HazeInfo latest_haze_info = incident_manager.retrieveLatestHazeInfo();
+			System.out.println("central psi: " + latest_haze_info.getCentralPsi()); 
+			System.out.println("north psi: " + latest_haze_info.getNorthPsi()); 
+			System.out.println("south psi: " + latest_haze_info.getSouthPsi()); 
+			System.out.println("east psi: " + latest_haze_info.getEastPsi()); 
+			System.out.println("west psi: " + latest_haze_info.getWestPsi()); 
+		%>
+		
     <!-- END HEAD -->
 
-    <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid" onload="initMap()">
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid" onload="initMap('haze', 
+    	[<%= latest_haze_info.getCentralPsi()%>, 
+    	 <%= latest_haze_info.getNorthPsi()%>,
+    	 <%= latest_haze_info.getSouthPsi()%>, 
+    	 <%= latest_haze_info.getEastPsi()%>,
+    	 <%= latest_haze_info.getWestPsi()%>,] )">
         <!-- BEGIN HEADER -->
         <div class="page-header navbar navbar-fixed-top">
-            <!-- BEGIN HEADER INNER -->
+            <!-- BEGIN HEADER INNER -->	
             <div class="page-header-inner ">
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
