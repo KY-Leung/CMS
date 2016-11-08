@@ -33,8 +33,8 @@ function convertToLng(postal_code) {
 
 function initMap(typeOfEvent, mapInfo) {
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 1.355379, lng: 103.867744},
-    zoom: 15,
+    center: {lat: 1.35735, lng: 103.82},
+    zoom: 12,
     mapTypeId: 'roadmap'
   });
 
@@ -154,7 +154,7 @@ function initMap(typeOfEvent, mapInfo) {
         infowindow.setPosition(userLocation);
         infowindow.setContent('You are here.');
         infowindow.open(map, userMarker);
-        map.setCenter(userLocation);
+        // map.setCenter(userLocation);
     }, function() {
       handleLocationError(true, infowindow, map.getCenter());
     });
