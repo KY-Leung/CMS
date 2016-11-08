@@ -98,8 +98,6 @@ License: You must have a valid license purchased only from themeforest(the above
     	 var mapinfo =  [
     	 <% for(counter = 0; counter < fire_incidents.size(); counter++) {
     	 		if(!fire_incidents.get(counter).isClosed()) { 
-    	 			System.out.println("desc: " + fire_incidents.get(counter).getDescription()); 
-    	 			System.out.println("location: " + fire_incidents.get(counter).getLocation()); 
     	 %> ['<%= fire_incidents.get(counter).getDescription() %>', 
     	 		convertToLat(<%= fire_incidents.get(counter).getLocation() %>), 
     	 		convertToLng(<%= fire_incidents.get(counter).getLocation() %>)] ,
