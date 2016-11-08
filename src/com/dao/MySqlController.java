@@ -1,4 +1,4 @@
-package com.control;
+package com.dao;
 import java.sql.*;
 public class MySqlController implements DbController{
 	private Connection c;

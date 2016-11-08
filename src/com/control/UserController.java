@@ -1,90 +1,41 @@
 package com.control;
 import java.sql.ResultSet;
 
+import com.dao.DaoFactory;
+import com.dao.DbController;
+import com.dao.DbFactory;
+import com.dao.MySqlUserDao;
+import com.dao.UserDao;
 
-public class UserController implements UserDao{
+
+public class UserController{
 public static final int PUBLIC_USER=0;
 public static final int CALL_CENTER_OPERATOR=1;
 	//used for login
 	public boolean isAuthenticated(String username,String password){
-		boolean isAuthenticated=false;
 		//execute SQL statement
-		DbController db=DbFactory.getDbController();
-		db.connect();
-		String query="select password from users where username='"+username+"'";
-		ResultSet rs=db.executeQuery(query);
-		try{
-			if(rs.next()){
-				if(rs.getString("password").equals(password)){
-					System.out.println("entered");
-					isAuthenticated=true;
-				}
-			}
-		}
-		catch(Exception e){
-			
-		}
-		db.close();
-		return isAuthenticated;
+		UserDao dao=DaoFactory.getUserDao();
+		return dao.isAuthenticated(username, password);
 	}
 	
 	public boolean usernameExists(String username){
-		boolean userExists=false;
-		DbController db=DbFactory.getDbController();
-		db.connect();
-		String query="select username from users where username='"+username+"'";
-		ResultSet rs=db.executeQuery(query);
-		try{
-			if(rs.next()){
-				userExists=true;
-			}
-		}catch(Exception e){
-			
-		}
-		db.close();
-		return userExists;
+		UserDao dao=DaoFactory.getUserDao();
+		return dao.usernameExists(username);
 	}
 	//used for registration
 	public void createUser(String username,String password,String name,int phoneNumber,int type){
-		DbController db=DbFactory.getDbController();
-		db.connect();
-		String query="insert into users values('"+username+"','"+password+"','"+name+"','"+phoneNumber+"','"+type+"')";
-		db.updateQuery(query);
-		db.close();
+		UserDao dao=DaoFactory.getUserDao();
+		dao.createUser(username, password, name, phoneNumber, type);
 	}
 	
 	//used for sending smsInfo
 	public int getPhoneNumber(String username){
-		int phoneNumber=0;
-		DbController db=DbFactory.getDbController();
-		db.connect();
-		ResultSet rs=db.executeQuery("select phoneNumber from users where username='"+username+"'");
-		try{
-			if(rs.next()){
-				phoneNumber=rs.getInt("phoneNumber");
-			}
-		}
-		catch(Exception e){
-			
-		}
-		db.close();
-		return phoneNumber;
+		UserDao dao=DaoFactory.getUserDao();
+		return dao.getPhoneNumber(username);
 	}
 	public int getUserType(String username){
-		int userType=0;
-		DbController db=DbFactory.getDbController();
-		db.connect();
-		ResultSet rs=db.executeQuery("select type from users where username='"+username+"'");
-		try{
-			if(rs.next()){
-				userType=rs.getInt("type");
-			}
-		}
-		catch(Exception e){
-			
-		}
-		db.close();
-		return userType;
+		UserDao dao=DaoFactory.getUserDao();
+		return dao.getUserType(username);
 	}
 	public static void main(String[] args){
 		UserController uc=new UserController();

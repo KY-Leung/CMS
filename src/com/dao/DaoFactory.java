@@ -1,4 +1,8 @@
-package com.control;
+package com.dao;
+
+import com.control.IncidentManager;
+import com.control.SettingsManager;
+import com.control.UserController;
 
 public class DaoFactory {
 	public static UserDao getUserDao(){
@@ -8,10 +12,10 @@ public class DaoFactory {
 		System.out.println("The db string is "+dbString);
 		switch(dbString){
 		case (Config.MY_SQL):
-			userdao=new UserController();
+			userdao=new MySqlUserDao();
 			break;
 		default:
-			userdao=new UserController();
+			userdao=new MySqlUserDao();
 		}
 		return userdao;
 	}
@@ -23,10 +27,10 @@ public class DaoFactory {
 		System.out.println("The db string is "+dbString);
 		switch(dbString){
 		case (Config.MY_SQL):
-			settingsDao=new SettingsManager(username);
+			settingsDao=new MySqlSettingsDao(username);
 			break;
 		default:
-			settingsDao=new SettingsManager(username);
+			settingsDao=new MySqlSettingsDao(username);
 		}
 		return settingsDao;
 	}
@@ -38,10 +42,10 @@ public class DaoFactory {
 		System.out.println("The db string is "+dbString);
 		switch(dbString){
 		case (Config.MY_SQL):
-			incidentDao=new IncidentManager();
+			incidentDao=new MySqlIncidentDao();
 			break;
 		default:
-			incidentDao=new IncidentManager();
+			incidentDao=new MySqlIncidentDao();
 		}
 		return incidentDao;
 	}
