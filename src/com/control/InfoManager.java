@@ -10,7 +10,7 @@ import com.entity.HazeInfo;
 import com.entity.MaskInfo;
 public class InfoManager {
 	public void createMaskInfo(String location,String maskType){
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		String query="insert into maskinfo values('"+location+"','"+maskType+"')";
 		db.updateQuery(query);
@@ -18,23 +18,16 @@ public class InfoManager {
 		
 	}
 	public void createBombshelterInfo(String location){
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		String query="insert into bombshelterinfo values('"+location+"')";
-		db.updateQuery(query);
-		db.close();
-	}
-	public void createHazeInfo(int centralPsi,int northPsi,int southPsi,int eastPsi,int westPsi,Date timestamp){
-		DbController db=ConfigFactory.getDbController();
-		db.connect();
-		String query="insert into hazeinfo values('"+timestamp+"','"+centralPsi+"','"+northPsi+"','"+southPsi+"','"+eastPsi+"','"+westPsi+"')";
 		db.updateQuery(query);
 		db.close();
 	}
 	public ArrayList<MaskInfo> retrieveMaskInfo(){
 		ArrayList<MaskInfo> list=new ArrayList<MaskInfo>();
 		MaskInfo mi=null;
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		String query="select * from maskinfo";
 		try{
@@ -55,7 +48,7 @@ public class InfoManager {
 	public ArrayList<BombshelterInfo> retrieveBombshelterInfo(){
 		ArrayList<BombshelterInfo> list=new ArrayList<BombshelterInfo>();
 		BombshelterInfo bi=null;
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		String query="select * from bombshelterinfo";
 		try{
@@ -75,7 +68,7 @@ public class InfoManager {
 	public ArrayList<EmergencyServicesInfo> retrieveEmergencyServicesInfo(){
 		ArrayList<EmergencyServicesInfo> list=new ArrayList<EmergencyServicesInfo>();
 		EmergencyServicesInfo ei=null;
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		String query="select * from emergencyservices";
 		try{

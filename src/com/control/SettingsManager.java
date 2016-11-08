@@ -7,7 +7,7 @@ import com.entity.User;
 
 
 
-public class SettingsManager {
+public class SettingsManager implements SettingsDao{
 	String username;
 	public SettingsManager(String username){
 		this.username=username;
@@ -15,14 +15,14 @@ public class SettingsManager {
 	
 	public void createSettings(boolean viaSms,boolean hazeInfo,boolean fireInfo,boolean maskInfo,boolean bombshelterInfo){
 		String query="insert into settings values('"+username+"',"+hazeInfo+","+fireInfo+","+maskInfo+","+bombshelterInfo+","+viaSms+")";
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		db.updateQuery(query);
 		db.close();
 	}
 	public void updateSms(boolean x){
 		String query="update settings set viaSms="+x+" where username='"+username+"'";
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		db.updateQuery(query);
 		db.close();
@@ -30,7 +30,7 @@ public class SettingsManager {
 	
 	public void updateHazeInfo(boolean x){
 		String query="update settings set hazeInfo="+x+" where username='"+username+"'";
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		db.updateQuery(query);
 		db.close();
@@ -38,7 +38,7 @@ public class SettingsManager {
 	
 	public void updateBombshelterinfo(boolean x){
 		String query="update settings set bombshelterInfo="+x+" where username='"+username+"'";
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		db.updateQuery(query);
 		db.close();
@@ -46,7 +46,7 @@ public class SettingsManager {
 	
 	public void updateFireInfo(boolean x){
 		String query="update settings set fireInfo="+x+" where username='"+username+"'";
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		db.updateQuery(query);
 		db.close();
@@ -54,7 +54,7 @@ public class SettingsManager {
 	
 	public void updateMaskInfo(boolean x){
 		String query="update settings set maskInfo="+x+" where username='"+username+"'";
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		db.updateQuery(query);
 		db.close();
@@ -64,7 +64,7 @@ public class SettingsManager {
 		Settings s=new Settings();
 		s.setUsername(username);
 		String query="select *  from settings where username='"+username+"'";
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		try{
 			ResultSet rs=db.executeQuery(query);
@@ -86,7 +86,7 @@ public class SettingsManager {
 	public ArrayList<User> getHazeInfoUsers(){
 		ArrayList<User> list=new ArrayList<User>();
 		User user=null;
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		try{
 			String query="select * from users where username in(select username from settings where hazeInfo=true);";
@@ -109,7 +109,7 @@ public class SettingsManager {
 	public ArrayList<User> getFireInfoUsers(){
 		ArrayList<User> list=new ArrayList<User>();
 		User user=null;
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		try{
 			String query="select * from users where username in(select username from settings where fireInfo=true);";
@@ -132,7 +132,7 @@ public class SettingsManager {
 	public ArrayList<User> getMaskInfoUsers(){
 		ArrayList<User> list=new ArrayList<User>();
 		User user=null;
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		try{
 			String query="select * from users where username in(select username from settings where maskInfo=true);";
@@ -155,7 +155,7 @@ public class SettingsManager {
 	public ArrayList<User> getBombshelterInfoUsers(){
 		ArrayList<User> list=new ArrayList<User>();
 		User user=null;
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		try{
 			String query="select * from users where username in(select username from settings where bombshelterInfo=true);";

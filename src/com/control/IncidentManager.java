@@ -8,10 +8,10 @@ import com.entity.HazeInfo;
 import com.entity.Incident;
 
 
-public class IncidentManager {
+public class IncidentManager implements IncidentDao{
 	public int createIncident(String reporterName,int reporterPhoneNumber,String typeOfAssistance,String typeOfIncident,String location,String description,String operatorName){
 		int incidentID=1;
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		String query="insert into incident values(null,'"+reporterName+"',"+reporterPhoneNumber+",'"+typeOfIncident+"','"+location+"','"+typeOfAssistance+"','"+description+"',null,false,null,null,'"+operatorName+"')";
 		System.out.println(query);
@@ -30,7 +30,7 @@ public class IncidentManager {
 		return incidentID;
 	}
 	public void createHazeInfo(int incidentID,int central,int north,int south,int east,int west){
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		String query="insert into hazeinfo values("+incidentID+","+central+","+north+","+south+","+east+","+west+")";
 		System.out.println(query);
@@ -42,14 +42,14 @@ public class IncidentManager {
 	}
 	
 	public void createFireIncident(int incidentID,int numberOfCasualties,int firefightingTime){
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		String query="insert into fireincident values("+incidentID+","+numberOfCasualties+","+firefightingTime+")";
 		db.updateQuery(query);
 		db.close();
 	}
 	public void closeIncident(int incidentID,String closeRemarks){
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		String query="update incident set isClosed="+true+",closureTimestamp=CURRENT_TIMESTAMP,closureRemarks='"+closeRemarks+"' where incidentID="+incidentID;
 		db.updateQuery(query);
@@ -58,7 +58,7 @@ public class IncidentManager {
 	}
 	public Incident retrieveSingleIncident(int incidentID){
 		Incident incident=null;
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		String query="select * from incident left join hazeinfo on incident.incidentID=hazeinfo.incidentID left join fireincident on incident.incidentID=fireincident.incidentID where incident.incidentID="+incidentID;
 		try{
@@ -103,7 +103,7 @@ public class IncidentManager {
 	public ArrayList<Incident> retrieveIncidents(){
 		ArrayList<Incident> list=new ArrayList<Incident>();
 		Incident incident=null;
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		String query="select * from incident";
 		try{
@@ -133,9 +133,9 @@ public class IncidentManager {
 	}
 	public HazeInfo retrieveLatestHazeInfo(){
 		HazeInfo hi=new HazeInfo();
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
-		String query="select * from hazeinfo inner join incident on hazeinfo.incidentID=incident.incidentID order by incidentID DESC LIMIT 1";
+		String query="select * from hazeinfo inner join incident on hazeinfo.incidentID=incident.incidentID order by hazeInfo.incidentID DESC LIMIT 1";
 		try{
 			ResultSet rs=db.executeQuery(query);
 			if(rs.next()){
@@ -149,7 +149,7 @@ public class IncidentManager {
 				hi.setClosureRemarks(rs.getString("closureRemarks"));
 				hi.setClosed(rs.getBoolean("isClosed"));
 				hi.setClosureTimestamp(rs.getString("closureTimestamp"));
-				hi.setOperatorName(rs.getString("operatorName"));
+				hi.setOperatorName(rs.getString("operatorUsername"));
 				hi.setIncidentType(rs.getString("typeOfIncident"));
 				hi.setCentralPsi(rs.getInt("centralPsi"));
 				hi.setNorthPsi(rs.getInt("northPsi"));
@@ -160,14 +160,14 @@ public class IncidentManager {
 			
 			}
 		}catch(Exception e){
-			
+			e.printStackTrace();
 		}
 		db.close();
 		return hi;
 	}
 	public ArrayList<HazeInfo> retrieveHazeInfo(){
 		HazeInfo hi=null;
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		ArrayList<HazeInfo> list=new ArrayList<HazeInfo>();
 		String query="select * from hazeinfo inner join incident on hazeinfo.incidentID=incident.incidentID";
@@ -185,7 +185,7 @@ public class IncidentManager {
 				hi.setClosureRemarks(rs.getString("closureRemarks"));
 				hi.setClosed(rs.getBoolean("isClosed"));
 				hi.setClosureTimestamp(rs.getString("closureTimestamp"));
-				hi.setOperatorName(rs.getString("operatorName"));
+				hi.setOperatorName(rs.getString("operatorUsername"));
 				hi.setIncidentType(rs.getString("typeOfIncident"));
 				hi.setCentralPsi(rs.getInt("centralPsi"));
 				hi.setNorthPsi(rs.getInt("northPsi"));
@@ -203,7 +203,7 @@ public class IncidentManager {
 	}
 	public ArrayList<FireIncident> retrieveFireIncidents(){
 		FireIncident fi=null;
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		ArrayList<FireIncident> list=new ArrayList<FireIncident>();
 		String query="select * from fireincident inner join incident on fireincident.incidentID=incident.incidentID";
@@ -221,7 +221,7 @@ public class IncidentManager {
 				fi.setClosureRemarks(rs.getString("closureRemarks"));
 				fi.setClosed(rs.getBoolean("isClosed"));
 				fi.setClosureTimestamp(rs.getString("closureTimestamp"));
-				fi.setOperatorName(rs.getString("operatorName"));
+				fi.setOperatorName(rs.getString("operatorUsername"));
 				fi.setIncidentType(rs.getString("typeOfIncident"));
 				fi.setNumberOfCasualties(rs.getInt("numberOfCasualties"));
 				fi.setFirefightingTime(rs.getInt("firefightingTime"));

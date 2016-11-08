@@ -90,7 +90,7 @@ public class EmailDispatcher implements InfoDispatcher{
 			message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse(recipientEmail));
 			message.setSubject(subject);
-			message.setText(emailMessage);
+			message.setContent(emailMessage,"text/html");
 
 			Transport.send(message);
 

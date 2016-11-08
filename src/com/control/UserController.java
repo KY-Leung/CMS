@@ -2,14 +2,14 @@ package com.control;
 import java.sql.ResultSet;
 
 
-public class UserController {
+public class UserController implements UserDao{
 public static final int PUBLIC_USER=0;
 public static final int CALL_CENTER_OPERATOR=1;
 	//used for login
 	public boolean isAuthenticated(String username,String password){
 		boolean isAuthenticated=false;
 		//execute SQL statement
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		String query="select password from users where username='"+username+"'";
 		ResultSet rs=db.executeQuery(query);
@@ -30,7 +30,7 @@ public static final int CALL_CENTER_OPERATOR=1;
 	
 	public boolean usernameExists(String username){
 		boolean userExists=false;
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		String query="select username from users where username='"+username+"'";
 		ResultSet rs=db.executeQuery(query);
@@ -46,7 +46,7 @@ public static final int CALL_CENTER_OPERATOR=1;
 	}
 	//used for registration
 	public void createUser(String username,String password,String name,int phoneNumber,int type){
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		String query="insert into users values('"+username+"','"+password+"','"+name+"','"+phoneNumber+"','"+type+"')";
 		db.updateQuery(query);
@@ -56,7 +56,7 @@ public static final int CALL_CENTER_OPERATOR=1;
 	//used for sending smsInfo
 	public int getPhoneNumber(String username){
 		int phoneNumber=0;
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		ResultSet rs=db.executeQuery("select phoneNumber from users where username='"+username+"'");
 		try{
@@ -72,7 +72,7 @@ public static final int CALL_CENTER_OPERATOR=1;
 	}
 	public int getUserType(String username){
 		int userType=0;
-		DbController db=ConfigFactory.getDbController();
+		DbController db=DbFactory.getDbController();
 		db.connect();
 		ResultSet rs=db.executeQuery("select type from users where username='"+username+"'");
 		try{

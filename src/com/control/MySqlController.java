@@ -13,7 +13,7 @@ public class MySqlController implements DbController{
 		    e.printStackTrace();
 		}
 		try{
-			c=DriverManager.getConnection("jdbc:mysql://localhost:3306/cms?useSSL=false","root","password");
+			c=DriverManager.getConnection("jdbc:mysql://localhost:3306/3003_db?useSSL=false","root","password");
 			s=c.createStatement();
 		}catch(Exception e){
 			e.printStackTrace();
