@@ -15,19 +15,28 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
-<%@ page import='com.control.IncidentManager, java.util.ArrayList, com.entity.Incident' %>
+<%@ page import='com.control.EmailDispatcher'%>
 <%@ page import='com.control.UserController'%>
+<%@ page import='com.control.IncidentManager'%>
+<%@ page import='com.entity.HazeInfo'%>
+<%@ page import='com.entity.Incident'%>
+<%@ page import='java.util.ArrayList'%>
+<%@ page isELIgnored="false" %>
 
-<%! IncidentManager incident_manager = new IncidentManager();  
-	ArrayList<Incident> incidents = new ArrayList<>(); 
+<%! int new_case_id = -1 ; 
+	String new_info_message = ""; 
+	HazeInfo latest_haze_info = new HazeInfo();  
+	ArrayList<Incident> fire_incidents = new ArrayList<>(); 
+	int counter = 0; 
 %>
+
 <html lang="en">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
 
     <head>
         <meta charset="utf-8" />
-        <title>Manage Cases</title>
+        <title>Fire</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
@@ -39,10 +48,6 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="./assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="./assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
         <!-- END GLOBAL MANDATORY STYLES -->
-        <!-- BEGIN PAGE LEVEL PLUGINS (DATATABLE)-->
-        <link href="./assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
-        <link href="./assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
-        <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="./assets/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
         <link href="./assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
@@ -51,14 +56,52 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="./assets/layouts/layout2/css/layout.min.css" rel="stylesheet" type="text/css" />
         <link href="./assets/layouts/layout2/css/themes/blue.min.css" rel="stylesheet" type="text/css" id="style_color" />
         <link href="./assets/layouts/layout2/css/custom.min.css" rel="stylesheet" type="text/css" />
+        <!-- BEGIN THEME LAYOUT STYLES -->
+        <link href="./assets/layouts/layout2/css/google-map.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
+        
+        
+        <% if (EmailDispatcher.email_dispatcher == null)
+			(new EmailDispatcher()).dispatchInformation(); %>
+			
+		<% if (request.getAttribute("new_case_id") != null) {
+			new_case_id = (int) request.getAttribute("new_case_id"); 
+		 %>
+			<script>
+			alert("Case <%= new_case_id %> is opened."); 
+			</script>
+		<%  request.setAttribute("new_case_id", null); } %>
+		
+			
+		<% if (request.getAttribute("new_info_message") != null) {
+				new_info_message = (String) request.getAttribute("new_info_message"); 
+				System.out.println(new_info_message); %>
+			<script>alert("New <%= new_info_message %> .");  </script>
+			
+			
+			<%  request.setAttribute("new_info_message", null); } %>
+			
+		<% if (request.getAttribute("settings_changed") != null && (boolean) request.getAttribute("settings_changed")) { %>
+			<script>alert("Settings updated!");  </script>
+			<%  request.setAttribute("settings_changed", null); } %>
+		
+		<% 	IncidentManager incident_manager = new IncidentManager(); 
+			HazeInfo latest_haze_info = incident_manager.retrieveLatestHazeInfo();
+			fire_incidents = incident_manager.retrieveIncidents(); 
+		%>
+		
     <!-- END HEAD -->
 
-    <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid" onload="initMap('haze', 
+    	[<%= latest_haze_info.getCentralPsi()%>, 
+    	 <%= latest_haze_info.getNorthPsi()%>,
+    	 <%= latest_haze_info.getSouthPsi()%>, 
+    	 <%= latest_haze_info.getEastPsi()%>,
+    	 <%= latest_haze_info.getWestPsi()%>,] )" >
         <!-- BEGIN HEADER -->
         <div class="page-header navbar navbar-fixed-top">
-            <!-- BEGIN HEADER INNER -->
+            <!-- BEGIN HEADER INNER -->	
             <div class="page-header-inner ">
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
@@ -127,11 +170,12 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
                     <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                     <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                        <li class="nav-item ">
+                        <li class="nav-item active open ">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-pointer"></i>
                                 <span class="title">Maps</span>
-                                <span class="arrow"></span>
+                                <span class="selected"></span>
+                                <span class="arrow open"></span>
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item  ">
@@ -157,23 +201,21 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                         </li>
                         -->
-                        <li class="nav-item active open operatorOnly">
+                        <li class="nav-item operatorOnly">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-layers"></i>
                                 <span class="title">Cases</span>
-                                <span class="selected"></span>
-                                <span class="arrow open"></span>
+                                <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item ">
+                                <li class="nav-item  ">
                                     <a href="cases_new.jsp" class="nav-link ">
                                         <span class="title">New</span>
                                     </a>
                                 </li>
-                                <li class="nav-item active open ">
+                                <li class="nav-item  ">
                                     <a href="cases_manage.jsp" class="nav-link ">
                                         <span class="title">Manage</span>
-                                        <span class="selected"></span>
                                     </a>
                                 </li>
                             </ul>
@@ -204,69 +246,8 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="page-content-wrapper">
                 <!-- BEGIN CONTENT BODY -->
                 <div class="page-content">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- BEGIN EXAMPLE TABLE PORTLET-->
-                            <div class="portlet box green">
-                                <div class="portlet-title">
-                                    <div class="caption">
-                                        <i class="fa fa-globe"></i>Current Cases </div>
-                                    <div class="tools"> </div>
-                                </div>
-                                <div class="portlet-body">
-                                    <table class="table table-striped table-bordered table-hover" id="sample_2">
-                                        <thead>
-                                            <tr>
-                                                <th> Case ID </th>
-                                                <th> Case Type </th>
-                                                <th> Postal Code </th>
-                                                <th> Assistance Requested </th>
-                                                <th> Remarks </th>
-                                                <th> Caller's Name </th>
-                                                <th> Caller's HP </th>
-                                                <th> Actions </th>
-                                            </tr>
-                                        </thead>
-                                       
-                                        <tbody>
-                                        <% incidents = incident_manager.retrieveIncidents();
-                                        	for(int counter = incidents.size()-1; counter >= 0; counter--) { 
-                                        		Incident i = incidents.get(counter); 
-                                        		if (!i.isClosed()) {
-                                   		%>
-                                       		<tr>
-                                               <td><%= i.getIncidentID() %></td>
-                                               <td><%= i.getIncidentType() %></td>
-                                               <td> <%= i.getLocation() %> </td>
-                                               <td> <%=i.getTypeOfAssistance() %> </td>
-                                               <td><%= i.getDescription() %></td>
-                                               <td> <%= i.getReporterName() %></td>
-                                               <td> <%= i.getReporterPhoneNumber() %></td>
-                                               <td>
-                                                   <div class="btn-group">
-                                                       <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                           <i class="fa fa-angle-down"></i>
-                                                       </button>
-                                                       <ul class="dropdown-menu" role="menu">
-                                                           <li>
-                                                               <a href="cases_close.jsp?id=<%= i.getIncidentID() %>">
-                                                                   <i class="icon-tag" ></i> Close </a>
-                                                           </li>
-                                                       </ul>
-                                                   </div>
-                                               </td>
-                                           </tr>
-                                        	
-                                        <% }} %>
-                                        
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!-- END EXAMPLE TABLE PORTLET-->
-                        </div>
-                    </div>
+                    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                    <div id="map"></div>
                 </div>
                 <!-- END CONTENT BODY -->
             </div>
@@ -282,36 +263,41 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a href="javascript:;" data-target="#quick_sidebar_tab_1" data-toggle="tab"> Settings</a>
                         </li>
                     </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active page-quick-sidebar-settings" id="quick_sidebar_tab_1">
-                            <div class="page-quick-sidebar-settings-list">
-                                <h3 class="list-heading">Notifications Subscription</h3>
-                                <ul class="list-items borderless">
-                                    <li> Fire
-                                        <input type="checkbox" class="make-switch" name="fire" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                    <li> Haze
-                                        <input type="checkbox" class="make-switch" name="haze" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                    <li> Bomb Shelter
-                                        <input type="checkbox" class="make-switch" name="shelter" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                    <li> Free Mask
-                                        <input type="checkbox" class="make-switch" name="mask" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                </ul>
-                                <h3 class="list-heading">Notifications Mode</h3>
-                                <ul class="list-items borderless">
-                                    <li> Web
-                                        <input type="checkbox" class="make-switch" name="web" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                    <li> SMS
-                                        <input type="checkbox" class="make-switch" name="sms" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                    <li> Email
-                                        <input type="checkbox" class="make-switch" name="email" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                </ul>
-                                <div class="inner-content">
-                                    <button class="btn btn-success" id="demo_1">
-                                        <i class="icon-settings"></i> Save Changes</button>
+                    <form action="./change_user_settings" id="user_subscription" method="POST">
+                        <div class="tab-content">
+                            <div class="tab-pane active page-quick-sidebar-settings" id="quick_sidebar_tab_1">
+                                <div class="page-quick-sidebar-settings-list">
+                                    <h3 class="list-heading">Notifications Subscription</h3>
+                                    <ul class="list-items borderless">
+                                        <li> Fire
+                                            <input type="checkbox" class="make-switch" name="fire" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                        <li> Haze
+                                            <input type="checkbox" class="make-switch" name="haze" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                        <li> Bomb Shelter
+                                            <input type="checkbox" class="make-switch" name="shelter" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                        <li> Free Mask
+                                            <input type="checkbox" class="make-switch" name="mask" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                    </ul>
+                                    <h3 class="list-heading">Notifications Mode</h3>
+                                    <ul class="list-items borderless">
+                                        <li> SMS
+                                            <input type="checkbox" class="make-switch" name="sms" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                        <li> Email
+                                            <input type="checkbox" class="make-switch" name="email" data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
+                                    </ul>
+                                    <div class="inner-content">
+                                        <button class="btn btn-success" id="demo_1">
+                                            <i href="#" onclick="submit_form()" class="icon-settings"></i> Save Changes</button>
+                                        <script>
+                                            function submit_form() {
+                                                document.getElementById("user_subscription").submit();
+                                            }
+                                        </script>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <!-- END QUICK SIDEBAR -->
@@ -348,6 +334,15 @@ License: You must have a valid license purchased only from themeforest(the above
 				elements[i].style.visibility = 'hidden'; 
 			</script>
 			<% }} %>
+		
+		<% if (request.getAttribute("username") != null) {
+			%>
+			<script>
+			alert("Welcome! <%= request.getAttribute("username") %> ."); 
+			</script>
+		
+		<% request.setAttribute("username", null); } %>
+        
         <!-- END CONTAINER -->
         <!--[if lt IE 9]>
 <script src="./assets/global/plugins/respond.min.js"></script>
@@ -362,11 +357,6 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="./assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
         <script src="./assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
         <!-- END CORE PLUGINS -->
-        <!-- BEGIN PAGE LEVEL PLUGINS (DATATABLE)-->
-        <script src="./assets/global/scripts/datatable.js" type="text/javascript"></script>
-        <script src="./assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
-        <script src="./assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN PAGE LEVEL PLUGINS (DIALOG)-->
         <script src="./assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
@@ -376,14 +366,15 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN PAGE LEVEL SCRIPTS (DIALOG - Change content)-->
         <script src="./assets/pages/scripts/ui-bootbox.min.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
-        <!-- BEGIN PAGE LEVEL SCRIPTS (DATATABLE)-->
-        <script src="./assets/pages/scripts/table-datatables-colreorder.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="./assets/layouts/layout2/scripts/layout.min.js" type="text/javascript"></script>
         <script src="./assets/layouts/layout2/scripts/demo.min.js" type="text/javascript"></script>
         <script src="./assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
+        <!-- BEGIN THEME LAYOUT SCRIPTS -->
+        <script src="./assets/layouts/layout2/scripts/google-map.js" type="text/javascript"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAn2XDB3kPgcalI-ywGJIEbU1wZ4UNP0oQ&libraries=places"
+         async defer></script>
     </body>
 
 </html>
