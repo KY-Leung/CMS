@@ -7,15 +7,28 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 function convertToLat(postal_code) {
-  $.getJSON("http://maps.googleapis.com/maps/api/geocode/json?address=" + postal_code, function(result){
-      alert(result.results[0].geometry.location.lat);
-  });
+	var lat = -1; 
+	$.ajax({
+		async: false, 
+		url: "http://maps.googleapis.com/maps/api/geocode/json?address=" + postal_code, 
+		success: function(result){
+		      lat = result.results[0].geometry.location.lat ; 
+		  }
+	}); 
+  
+  return lat; 
 }
 
 function convertToLng(postal_code) {
-  $.getJSON("http://maps.googleapis.com/maps/api/geocode/json?address=" + postal_code, function(result){
-      alert(result.results[0].geometry.location.lng);
-  });
+	var long = -1; 
+	$.ajax({
+		async: false, 
+		url: "http://maps.googleapis.com/maps/api/geocode/json?address=" + postal_code, 
+		success: function(result){
+		      long = result.results[0].geometry.location.lng ; 
+		  }
+	}); 
+	return long; 
 }
 
 function initMap(typeOfEvent, mapInfo) {
