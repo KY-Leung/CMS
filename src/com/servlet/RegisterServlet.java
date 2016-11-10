@@ -13,13 +13,14 @@ import com.control.SettingsManager;
 import com.control.UserController;
 
 /**
- * Servlet implementation class RegisterServlet
+ * Servlet that does initial parsing for requests related to registering new users
  */
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
+     * Constructor
      * @see HttpServlet#HttpServlet()
      */
     public RegisterServlet() {
@@ -27,7 +28,12 @@ public class RegisterServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
+    /**
+	 * Called by the server (via the service method) to allow a servlet to handle a GET request.
+	 * 
+	 * @param request	object that contains the request the client has made of the servlet
+	 * @param response 	object that contains the response the servlet sends to the client
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,18 +42,15 @@ public class RegisterServlet extends HttpServlet {
 	}
 
 	/**
+	 * Called by the server (via the service method) to allow a servlet to handle a POST request. 
+	 * The HTTP POST method allows the client to send data of unlimited length to the Web server 
+	 * a single time and is useful when posting information such as credit card numbers.
+	 * 
+	 * @param request	object that contains the request the client has made of the servlet
+	 * @param response 	object that contains the response the servlet sends to the client
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Enumeration<String> paramNames = request.getParameterNames();
-//		// for testing
-	   while(paramNames.hasMoreElements()) {
-		   String paramName = (String)paramNames.nextElement();
-		   System.out.println("paramName: " + paramName); 
-		   String paramValue = request.getParameter(paramName);
-		   System.out.println("paramValue: " + paramValue);
-	   }
 	    
 	   String username = request.getParameter("username"); 
 	   String password = request.getParameter("password"); 

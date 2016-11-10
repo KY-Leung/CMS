@@ -15,13 +15,14 @@ import com.control.InfoManager;
 import com.control.TwitterDispatcher;
 
 /**
- * Servlet implementation class NewInfoServlet
+ * Servlet that does initial parsing for requests related to adding new information to the system
  */
 @WebServlet("/NewInfoServlet")
 public class NewInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
+     * Constructor
      * @see HttpServlet#HttpServlet()
      */
     public NewInfoServlet() {
@@ -29,7 +30,12 @@ public class NewInfoServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
+    /**
+	 * Called by the server (via the service method) to allow a servlet to handle a GET request.
+	 * 
+	 * @param request	object that contains the request the client has made of the servlet
+	 * @param response 	object that contains the response the servlet sends to the client
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,18 +44,15 @@ public class NewInfoServlet extends HttpServlet {
 	}
 
 	/**
+	 * Called by the server (via the service method) to allow a servlet to handle a POST request. 
+	 * The HTTP POST method allows the client to send data of unlimited length to the Web server 
+	 * a single time and is useful when posting information such as credit card numbers.
+	 * 
+	 * @param request	object that contains the request the client has made of the servlet
+	 * @param response 	object that contains the response the servlet sends to the client
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		System.out.println("In NewInfoServlet doPost"); 
-//		Enumeration<String> paramNames = request.getParameterNames();
-//		// for testing
-//	   while(paramNames.hasMoreElements()) {
-//		   String paramName = (String)paramNames.nextElement();
-//		   System.out.println("paramName: " + paramName); 
-//		   String paramValue = request.getParameter(paramName);
-//		   System.out.println("paramValue: " + paramValue);
-//	   }
 	   
 	   InfoManager info_manager = new InfoManager(); 
 	   String info_type = request.getParameter("case"); 
@@ -77,6 +80,11 @@ public class NewInfoServlet extends HttpServlet {
 	   return;
 	}
 
+	/**
+	 * Convenience method to dispatch information to social media
+	 * @param subject	subject of message	
+	 * @param message	content of message
+	 */
 	private void dispatch_to_social_media(String subject, String message) {
 		Date date = new Date(); 
 		

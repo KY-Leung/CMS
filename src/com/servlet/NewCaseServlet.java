@@ -19,13 +19,14 @@ import com.entity.Incident;
 import com.entity.User;
 
 /**
- * Servlet implementation class NewCaseServlet
+ * Servlet that does initial parsing for requests related to adding new case to the system
  */
 @WebServlet("/NewCaseServlet")
 public class NewCaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
+     * Constructor
      * @see HttpServlet#HttpServlet()
      */
     public NewCaseServlet() {
@@ -35,7 +36,12 @@ public class NewCaseServlet extends HttpServlet {
     
     
 
-	/**
+    /**
+	 * Called by the server (via the service method) to allow a servlet to handle a GET request.
+	 * 
+	 * @param request	object that contains the request the client has made of the servlet
+	 * @param response 	object that contains the response the servlet sends to the client
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,19 +49,15 @@ public class NewCaseServlet extends HttpServlet {
 	}
 
 	/**
+	 * Called by the server (via the service method) to allow a servlet to handle a POST request. 
+	 * The HTTP POST method allows the client to send data of unlimited length to the Web server 
+	 * a single time and is useful when posting information such as credit card numbers.
+	 * 
+	 * @param request	object that contains the request the client has made of the servlet
+	 * @param response 	object that contains the response the servlet sends to the client
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		/* System.out.println("In NewCaseServlet doPost"); 
-		Enumeration<String> paramNames = request.getParameterNames();
-		// for testing
-	   while(paramNames.hasMoreElements()) {
-		   String paramName = (String)paramNames.nextElement();
-		   System.out.println("paramName: " + paramName); 
-		   String paramValue = request.getParameter(paramName);
-		   System.out.println("paramValue: " + paramValue);
-	   }*/
 	   
 	   IncidentManager incident_manager = new IncidentManager(); 
 	   
@@ -121,6 +123,10 @@ public class NewCaseServlet extends HttpServlet {
 
 
 
+	/**
+	 * Convenience method to dispatch new fire message to registered users
+	 * @param message	message content
+	 */
 	private void dispatch_fire_info(String message) {
 		// TODO Auto-generated method stub
 		SettingsManager sm = new SettingsManager(""); 

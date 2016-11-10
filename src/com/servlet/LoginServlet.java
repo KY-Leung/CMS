@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.control.UserController;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet that does initial parsing for requests related to users logging into the system
  */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -27,7 +27,12 @@ public class LoginServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
+    /**
+	 * Called by the server (via the service method) to allow a servlet to handle a GET request.
+	 * 
+	 * @param request	object that contains the request the client has made of the servlet
+	 * @param response 	object that contains the response the servlet sends to the client
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,19 +41,15 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	/**
+	 * Called by the server (via the service method) to allow a servlet to handle a POST request. 
+	 * The HTTP POST method allows the client to send data of unlimited length to the Web server 
+	 * a single time and is useful when posting information such as credit card numbers.
+	 * 
+	 * @param request	object that contains the request the client has made of the servlet
+	 * @param response 	object that contains the response the servlet sends to the client
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// System.out.println("In NewCaseServlet doPost"); 
-//		Enumeration<String> paramNames = request.getParameterNames();
-//		// for testing
-//	   while(paramNames.hasMoreElements()) {
-//		   String paramName = (String)paramNames.nextElement();
-//		   System.out.println("paramName: " + paramName); 
-//		   String paramValue = request.getParameter(paramName);
-//		   System.out.println("paramValue: " + paramValue);
-//	   }
 		
 	   String username = request.getParameter("username"); 
 	   String password = request.getParameter("password"); 
@@ -66,11 +67,14 @@ public class LoginServlet extends HttpServlet {
 		   request.setAttribute("login_attempt", false);
 		   request.getRequestDispatcher("./login.jsp").forward(request, response);;
 	   }
-	   
-	    
-	   
 	}
 
+	/**
+	 * Convenience method to check whether a username-password pair input is authentic
+	 * @param username	username submitted by user
+	 * @param password	password submitted by user		
+	 * @return			true if username-password is authentic
+	 */
 	private boolean authenticate_login(String username, String password) {
 		// TODO Auto-generated method stub
 		UserController user_controller = new UserController();

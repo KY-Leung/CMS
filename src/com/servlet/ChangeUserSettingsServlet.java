@@ -12,21 +12,26 @@ import javax.servlet.http.HttpServletResponse;
 import com.control.SettingsManager;
 
 /**
- * Servlet implementation class ChangeUserSettings
+ * Servlet that does initial parsing for requests related to changing user's settings
  */
 @WebServlet("/ChangeUserSettings")
 public class ChangeUserSettingsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
+     * Constructor
      * @see HttpServlet#HttpServlet()
      */
     public ChangeUserSettingsServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
+	 * Called by the server (via the service method) to allow a servlet to handle a GET request.
+	 * 
+	 * @param request	object that contains the request the client has made of the servlet
+	 * @param response 	object that contains the response the servlet sends to the client
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,6 +40,12 @@ public class ChangeUserSettingsServlet extends HttpServlet {
 	}
 
 	/**
+	 * Called by the server (via the service method) to allow a servlet to handle a POST request. 
+	 * The HTTP POST method allows the client to send data of unlimited length to the Web server 
+	 * a single time and is useful when posting information such as credit card numbers.
+	 * 
+	 * @param request	object that contains the request the client has made of the servlet
+	 * @param response 	object that contains the response the servlet sends to the client
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
