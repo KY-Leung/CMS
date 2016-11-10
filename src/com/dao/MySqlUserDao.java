@@ -6,9 +6,25 @@ import com.dao.DbFactory;
 import com.dao.UserDao;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MySqlUserDao is mysql implemenation of userdao.
+ */
 public class MySqlUserDao implements UserDao{
+
+/** The Constant PUBLIC_USER. */
 public static final int PUBLIC_USER=0;
+
+/** The Constant CALL_CENTER_OPERATOR. */
 public static final int CALL_CENTER_OPERATOR=1;
+	
+	/**
+	 * Checks if is authenticated.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @return true, if is authenticated
+	 */
 	//used for login
 	public boolean isAuthenticated(String username,String password){
 		boolean isAuthenticated=false;
@@ -32,6 +48,12 @@ public static final int CALL_CENTER_OPERATOR=1;
 		return isAuthenticated;
 	}
 	
+	/**
+	 * Username exists.
+	 *
+	 * @param username the username
+	 * @return true, if successful
+	 */
 	public boolean usernameExists(String username){
 		boolean userExists=false;
 		DbController db=DbFactory.getDbController();
@@ -48,6 +70,16 @@ public static final int CALL_CENTER_OPERATOR=1;
 		db.close();
 		return userExists;
 	}
+	
+	/**
+	 * Creates the user.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @param name the name
+	 * @param phoneNumber the phone number
+	 * @param type the type
+	 */
 	//used for registration
 	public void createUser(String username,String password,String name,int phoneNumber,int type){
 		DbController db=DbFactory.getDbController();
@@ -57,6 +89,12 @@ public static final int CALL_CENTER_OPERATOR=1;
 		db.close();
 	}
 	
+	/**
+	 * Gets the phone number.
+	 *
+	 * @param username the username
+	 * @return the phone number
+	 */
 	//used for sending smsInfo
 	public int getPhoneNumber(String username){
 		int phoneNumber=0;
@@ -74,6 +112,13 @@ public static final int CALL_CENTER_OPERATOR=1;
 		db.close();
 		return phoneNumber;
 	}
+	
+	/**
+	 * Gets the user type.
+	 *
+	 * @param username the username
+	 * @return the user type
+	 */
 	public int getUserType(String username){
 		int userType=0;
 		DbController db=DbFactory.getDbController();

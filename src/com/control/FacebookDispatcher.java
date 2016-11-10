@@ -8,6 +8,10 @@ import com.restfb.types.FacebookType;
 import com.restfb.types.Page;
 import com.restfb.types.User;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FacebookDispatcher.
+ */
 public class FacebookDispatcher implements InfoDispatcher{
 	// Gmail Login
 	// User: cz3003facebook@gmail.com
@@ -23,24 +27,55 @@ public class FacebookDispatcher implements InfoDispatcher{
 	// Application Secret : 7efd0178e84e5d5553ef1b31df8cd2b4 
 	
 	// Access token will last till Jan 2017
+	/** The page access token. */
 	// To check access token expiry date: https://developers.facebook.com/tools/debug/accesstoken/
 	private String pageAccessToken = "EAAUQQrAJQk0BAJNaMsPIbtBi3jUaJyejPpNQd6LRcR7Kf35ZBVtGK7I46CUZBg56XrY2rOtY8pwPI4oZBA4AntZCCS8lWVMGK7oPeDTh3O1QZAGgo27Ox6EI46jkXG0Pzgfr9OyRojuAIZCcs8NKZCJBPChYM8ZCmHn1YHD2l81sNQZDZD";
+    
+    /** The page ID. */
     private String pageID = "1821163491495078";
+    
+    /** The fb client. */
     private FacebookClient fbClient;
     
+	/** The user. */
 	private User user = null;
+	
+	/** The page. */
 	private Page page = null;
+	
+	/** The message. */
 	private String message;
+	
+	/** The subject. */
 	private String subject;
 	
+	/**
+	 * Instantiates a new facebook dispatcher.
+	 */
 	public FacebookDispatcher(){
 	}
+	
+	/**
+	 * Sets the message.
+	 *
+	 * @param message the facebook status
+	 */
 	public void setMessage(String message){
 		this.message=message;
 	}
+	
+	/**
+	 * Sets the subject.
+	 *
+	 * @param subject the subject
+	 */
 	public void setSubject(String subject){
 		this.subject=subject;
 	}
+	
+	/**
+	 * Dispatch information to facebook.
+	 */
 	public void dispatchInformation(){
     	try {
         	
@@ -55,6 +90,12 @@ public class FacebookDispatcher implements InfoDispatcher{
         }
     	
 	}
+	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args){
 		FacebookDispatcher fd=new FacebookDispatcher();
 		fd.setMessage("Testing FB dispatcher");

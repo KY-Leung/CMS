@@ -4,7 +4,17 @@ import com.control.IncidentManager;
 import com.control.SettingsManager;
 import com.control.UserController;
 
+// TODO: Auto-generated Javadoc
+/**
+ * A factory for creating Dao instances.
+ */
 public class DaoFactory {
+	
+	/**
+	 * Gets the user dao.
+	 *
+	 * @return the user dao
+	 */
 	public static UserDao getUserDao(){
 		UserDao userdao=null;
 		//String dbString=Config.getDbType();
@@ -20,6 +30,12 @@ public class DaoFactory {
 		return userdao;
 	}
 	
+	/**
+	 * Gets the settings dao.
+	 *
+	 * @param username the username
+	 * @return the settings dao
+	 */
 	public static SettingsDao getSettingsDao(String username){
 		SettingsDao settingsDao=null;
 		//String dbString=Config.getDbType();
@@ -35,6 +51,11 @@ public class DaoFactory {
 		return settingsDao;
 	}
 	
+	/**
+	 * Gets the incident dao.
+	 *
+	 * @return the incident dao
+	 */
 	public static IncidentDao getIncidentDao(){
 		IncidentDao incidentDao=null;
 		//String dbString=Config.getDbType();

@@ -3,8 +3,17 @@ package com.dao;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+// TODO: Auto-generated Javadoc
+/**
+ * A factory for creating Db instances.
+ */
 public class DbFactory{
 
+	/**
+	 * Gets the db controller.
+	 *
+	 * @return the db controller
+	 */
 	public static DbController getDbController(){
 		DbController db=null;
 		//String dbString=Config.getDbType();

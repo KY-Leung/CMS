@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package com.control;
 import java.util.Properties;
 import java.util.Timer;
@@ -23,7 +26,7 @@ public class EmailDispatcher implements InfoDispatcher{
 	/** The password. */
 	final String password = "backstreetboys";
 	
-    /** The email dispatcher instace. */
+    /** The email dispatcher instance. */
     public static EmailDispatcher email_dispatcher = null; 
 	
 	/** The email message. */
