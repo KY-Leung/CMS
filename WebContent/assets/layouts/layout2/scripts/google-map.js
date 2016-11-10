@@ -7,21 +7,34 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 function convertToLat(postal_code) {
-  $.getJSON("http://maps.googleapis.com/maps/api/geocode/json?address=" + postal_code, function(result){
-      alert(result.results[0].geometry.location.lat);
-  });
+	var lat = -1; 
+	$.ajax({
+		async: false, 
+		url: "http://maps.googleapis.com/maps/api/geocode/json?address=" + postal_code, 
+		success: function(result){
+		      lat = result.results[0].geometry.location.lat ; 
+		  }
+	}); 
+  
+  return lat; 
 }
 
 function convertToLng(postal_code) {
-  $.getJSON("http://maps.googleapis.com/maps/api/geocode/json?address=" + postal_code, function(result){
-      alert(result.results[0].geometry.location.lng);
-  });
+	var long = -1; 
+	$.ajax({
+		async: false, 
+		url: "http://maps.googleapis.com/maps/api/geocode/json?address=" + postal_code, 
+		success: function(result){
+		      long = result.results[0].geometry.location.lng ; 
+		  }
+	}); 
+	return long; 
 }
 
-function initMap() {
+function initMap(typeOfEvent, mapInfo) {
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 1.355379, lng: 103.867744},
-    zoom: 15,
+    center: {lat: 1.35735, lng: 103.82},
+    zoom: 12,
     mapTypeId: 'roadmap'
   });
 
@@ -58,17 +71,17 @@ function initMap() {
     ['West PSI', 1.35735,103.7]
   ];
   // TO BE CHANGED
-  var typeOfEvent = 'haze';
+//  var typeOfEvent = 'haze';
   // Format all events except for haze
-  var mapInfo = [
-    ['Bondi Beach', 1.318175, 103.883086],
-    ['Coogee Beach', 1.328174, 103.883086],
-    ['Cronulla Beach', 1.338173, 103.883086],
-    ['Manly Beach', 1.348172, 103.883086],
-    ['Maroubra Beach', 1.358171, 103.883086]
-  ];
+//  var mapInfo = [
+//    ['Bondi Beach', 1.318175, 103.883086],
+//    ['Coogee Beach', 1.328174, 103.883086],
+//    ['Cronulla Beach', 1.338173, 103.883086],
+//    ['Manly Beach', 1.348172, 103.883086],
+//    ['Maroubra Beach', 1.358171, 103.883086]
+//  ];
   // Format for haze only
-  var mapInfo = [120, 121, 122, 123, 124];
+//  var mapInfo = [120, 121, 122, 123, 124];
 
   // FOR SEARCH
   // Bias the SearchBox results towards current map's viewport.
@@ -141,7 +154,7 @@ function initMap() {
         infowindow.setPosition(userLocation);
         infowindow.setContent('You are here.');
         infowindow.open(map, userMarker);
-        map.setCenter(userLocation);
+        // map.setCenter(userLocation);
     }, function() {
       handleLocationError(true, infowindow, map.getCenter());
     });

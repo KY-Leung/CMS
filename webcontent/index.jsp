@@ -17,9 +17,19 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--[if !IE]><!-->
 <%@ page import='com.control.EmailDispatcher'%>
 <%@ page import='com.control.UserController'%>
+<%@ page import='com.control.IncidentManager'%>
+<%@ page import='com.entity.HazeInfo'%>
+<%@ page import='com.entity.Incident'%>
+<%@ page import='java.util.ArrayList'%>
 <%@ page isELIgnored="false" %>
 
-<%! int new_case_id = -1 ; String new_info_message = ""; %>
+<%! int new_case_id = -1 ; 
+	String new_info_message = ""; 
+	HazeInfo latest_haze_info = new HazeInfo();  
+	ArrayList<Incident> fire_incidents = new ArrayList<>(); 
+	int counter = 0; 
+%>
+
 <html lang="en">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
@@ -76,12 +86,30 @@ License: You must have a valid license purchased only from themeforest(the above
 			<script>alert("Settings updated!");  </script>
 			<%  request.setAttribute("settings_changed", null); } %>
 		
+		<% 	IncidentManager incident_manager = new IncidentManager(); 
+			HazeInfo latest_haze_info = incident_manager.retrieveLatestHazeInfo();
+			fire_incidents = incident_manager.retrieveIncidents(); 
+		%>
+		
     <!-- END HEAD -->
 
-    <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid" onload="initMap()">
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid" onload="
+    	 
+    	 var mapinfo =  [
+    	 <% for(counter = 0; counter < fire_incidents.size(); counter++) {
+    	 		if(!fire_incidents.get(counter).isClosed()) { 
+    	 %> ['<%= fire_incidents.get(counter).getDescription() %>', 
+    	 		convertToLat(<%= fire_incidents.get(counter).getLocation() %>), 
+    	 		convertToLng(<%= fire_incidents.get(counter).getLocation() %>)] ,
+		<%  }} %>
+			['Maroubra Beach', 1.358171, 103.883086], 
+			['#23-1371', 1.367284, 103.8509513]
+			];
+    	 
+    	 initMap('fire', mapinfo)" >
         <!-- BEGIN HEADER -->
         <div class="page-header navbar navbar-fixed-top">
-            <!-- BEGIN HEADER INNER -->
+            <!-- BEGIN HEADER INNER -->	
             <div class="page-header-inner ">
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
@@ -165,20 +193,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a class="nav-link ">
+                                    <a href="haze_only.jsp" class="nav-link ">
                                         <span class="title">Haze</span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
-                                    <a class="nav-link ">
-                                        <span class="title">Bomb Shelter</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item  ">
-                                    <a class="nav-link ">
-                                        <span class="title">Free Masek</span>
-                                    </a>
-                                </li>
+                                
                             </ul>
                         </li>
                         <!--
