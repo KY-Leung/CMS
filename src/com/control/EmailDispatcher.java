@@ -11,34 +11,69 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EmailDispatcher.
+ */
 public class EmailDispatcher implements InfoDispatcher{
+	
+	/** The email address. */
 	final String username = "cz3003softwareanalysis@gmail.com";
+	
+	/** The password. */
 	final String password = "backstreetboys";
 	
+    /** The email dispatcher instace. */
     public static EmailDispatcher email_dispatcher = null; 
 	
+	/** The email message. */
 	private String emailMessage;
+	
+	/** The subject. */
 	private String subject;
+	
+	/** The recipient email. */
 	private String recipientEmail;
 	
     
+    /**
+     * Instantiates a new email dispatcher.
+     *
+     * @param recipientEmail the recipient email
+     */
     public EmailDispatcher(String recipientEmail){
 		this.recipientEmail=recipientEmail;
 	}
 	
+    /**
+     * Instantiates a new email dispatcher.
+     */
     public EmailDispatcher() {}
 	
 	
+    /**
+     * Sets the message.
+     *
+     * @param message the email content
+     */
     public void setMessage(String message){
 		emailMessage=message;
 	}
 	
+    /**
+     * Sets the subject.
+     *
+     * @param subject the email subject
+     */
     public void setSubject(String subject){
 		this.subject=subject;
 	}
 	
     
     
+    /**
+     * Dispatch email.
+     */
     public void dispatchInformation(){
 		
 		// Sends a periodic report to PMO
@@ -69,6 +104,9 @@ public class EmailDispatcher implements InfoDispatcher{
 		timer.scheduleAtFixedRate(task, 0, interval);
 	}
 
+	/**
+	 * Send email.
+	 */
 	private void sendEmail() {
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -103,6 +141,11 @@ public class EmailDispatcher implements InfoDispatcher{
 	
 	
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		
 		InfoDispatcher ed = new EmailDispatcher();
