@@ -11,7 +11,24 @@ import com.entity.HazeInfo;
 import com.entity.Incident;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MySqlIncidentDao is mysql implementation of incidentdao.
+ */
 public class MySqlIncidentDao implements IncidentDao{
+	
+	/**
+	 * Creates the incident.
+	 *
+	 * @param reporterName the reporter name
+	 * @param reporterPhoneNumber the reporter phone number
+	 * @param typeOfAssistance the type of assistance
+	 * @param typeOfIncident the type of incident
+	 * @param location the location
+	 * @param description the description
+	 * @param operatorName the operator name
+	 * @return the int
+	 */
 	public int createIncident(String reporterName,int reporterPhoneNumber,String typeOfAssistance,String typeOfIncident,String location,String description,String operatorName){
 		int incidentID=1;
 		DbController db=DbFactory.getDbController();
@@ -32,6 +49,17 @@ public class MySqlIncidentDao implements IncidentDao{
 		db.close();
 		return incidentID;
 	}
+	
+	/**
+	 * Creates the haze info.
+	 *
+	 * @param incidentID the incident ID
+	 * @param central the central
+	 * @param north the north
+	 * @param south the south
+	 * @param east the east
+	 * @param west the west
+	 */
 	public void createHazeInfo(int incidentID,int central,int north,int south,int east,int west){
 		DbController db=DbFactory.getDbController();
 		db.connect();
@@ -44,6 +72,13 @@ public class MySqlIncidentDao implements IncidentDao{
 		db.close();
 	}
 	
+	/**
+	 * Creates the fire incident.
+	 *
+	 * @param incidentID the incident ID
+	 * @param numberOfCasualties the number of casualties
+	 * @param firefightingTime the firefighting time
+	 */
 	public void createFireIncident(int incidentID,int numberOfCasualties,int firefightingTime){
 		DbController db=DbFactory.getDbController();
 		db.connect();
@@ -51,6 +86,13 @@ public class MySqlIncidentDao implements IncidentDao{
 		db.updateQuery(query);
 		db.close();
 	}
+	
+	/**
+	 * Close incident.
+	 *
+	 * @param incidentID the incident ID
+	 * @param closeRemarks the close remarks
+	 */
 	public void closeIncident(int incidentID,String closeRemarks){
 		DbController db=DbFactory.getDbController();
 		db.connect();
@@ -59,6 +101,13 @@ public class MySqlIncidentDao implements IncidentDao{
 		db.close();
 		
 	}
+	
+	/**
+	 * Retrieve single incident.
+	 *
+	 * @param incidentID the incident ID
+	 * @return the incident
+	 */
 	public Incident retrieveSingleIncident(int incidentID){
 		Incident incident=null;
 		DbController db=DbFactory.getDbController();
@@ -103,6 +152,12 @@ public class MySqlIncidentDao implements IncidentDao{
 		db.close();
 		return incident;
 	}
+	
+	/**
+	 * Retrieve incidents.
+	 *
+	 * @return the array list
+	 */
 	public ArrayList<Incident> retrieveIncidents(){
 		ArrayList<Incident> list=new ArrayList<Incident>();
 		Incident incident=null;
@@ -134,6 +189,12 @@ public class MySqlIncidentDao implements IncidentDao{
 		db.close();
 		return list;
 	}
+	
+	/**
+	 * Retrieve latest haze info.
+	 *
+	 * @return the haze info
+	 */
 	public HazeInfo retrieveLatestHazeInfo(){
 		HazeInfo hi=new HazeInfo();
 		DbController db=DbFactory.getDbController();
@@ -168,6 +229,12 @@ public class MySqlIncidentDao implements IncidentDao{
 		db.close();
 		return hi;
 	}
+	
+	/**
+	 * Retrieve haze info.
+	 *
+	 * @return the array list
+	 */
 	public ArrayList<HazeInfo> retrieveHazeInfo(){
 		HazeInfo hi=null;
 		DbController db=DbFactory.getDbController();
@@ -204,6 +271,12 @@ public class MySqlIncidentDao implements IncidentDao{
 		db.close();
 		return list;
 	}
+	
+	/**
+	 * Retrieve fire incidents.
+	 *
+	 * @return the array list
+	 */
 	public ArrayList<FireIncident> retrieveFireIncidents(){
 		FireIncident fi=null;
 		DbController db=DbFactory.getDbController();

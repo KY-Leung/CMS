@@ -6,15 +6,29 @@ import java.util.Date;
 import com.entity.HazeInfo;
 import com.entity.Incident;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StatusReportGenerator.
+ */
 public class StatusReportGenerator {
 	
+	/** The report. */
 	String report;
+	
+	/** The date. */
 	Date date;
+	
+	/**
+	 * Instantiates a new status report generator.
+	 */
 	public StatusReportGenerator(){
 		generateReport();
 		date=new Date();
 	}
 	
+	/**
+	 * Generate report as a html string. It will display the latest haze info in a tabular form.It will display the list of unclosed incidents in tabular form.
+	 */
 	private void generateReport(){
 		//code to generate report
 		//get hazeinfo??
@@ -47,13 +61,29 @@ public class StatusReportGenerator {
 		report+="</table>";
 	}
 	
+	/**
+	 * Gets the timestamp that the report was generated.
+	 *
+	 * @return the timestamp
+	 */
 	public String getTimestamp(){
 		return date.toString();
 	}
 	
+	/**
+	 * Gets the status report as a HTML strings.
+	 *
+	 * @return the report
+	 */
 	public String getReport(){
 		return report;
 	}
+	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args){
 		StatusReportGenerator s=new StatusReportGenerator();
 		System.out.println(s.getTimestamp());

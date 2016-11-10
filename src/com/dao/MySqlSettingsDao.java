@@ -10,12 +10,33 @@ import com.entity.User;
 
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MySqlSettingsDao is mysql implemenation of settingsdao.
+ */
 public class MySqlSettingsDao implements SettingsDao{
+	
+	/** The username. */
 	String username;
+	
+	/**
+	 * Instantiates a new my sql settings dao.
+	 *
+	 * @param username the username
+	 */
 	public MySqlSettingsDao(String username){
 		this.username=username;
 	}
 	
+	/**
+	 * Creates the settings.
+	 *
+	 * @param viaSms the via sms
+	 * @param hazeInfo the haze info
+	 * @param fireInfo the fire info
+	 * @param maskInfo the mask info
+	 * @param bombshelterInfo the bombshelter info
+	 */
 	public void createSettings(boolean viaSms,boolean hazeInfo,boolean fireInfo,boolean maskInfo,boolean bombshelterInfo){
 		String query="insert into settings values('"+username+"',"+hazeInfo+","+fireInfo+","+maskInfo+","+bombshelterInfo+","+viaSms+")";
 		DbController db=DbFactory.getDbController();
@@ -23,6 +44,12 @@ public class MySqlSettingsDao implements SettingsDao{
 		db.updateQuery(query);
 		db.close();
 	}
+	
+	/**
+	 * Update sms.
+	 *
+	 * @param x the x
+	 */
 	public void updateSms(boolean x){
 		String query="update settings set viaSms="+x+" where username='"+username+"'";
 		DbController db=DbFactory.getDbController();
@@ -31,6 +58,11 @@ public class MySqlSettingsDao implements SettingsDao{
 		db.close();
 	}
 	
+	/**
+	 * Update haze info.
+	 *
+	 * @param x the x
+	 */
 	public void updateHazeInfo(boolean x){
 		String query="update settings set hazeInfo="+x+" where username='"+username+"'";
 		DbController db=DbFactory.getDbController();
@@ -39,6 +71,11 @@ public class MySqlSettingsDao implements SettingsDao{
 		db.close();
 	}
 	
+	/**
+	 * Update bombshelterinfo.
+	 *
+	 * @param x the x
+	 */
 	public void updateBombshelterinfo(boolean x){
 		String query="update settings set bombshelterInfo="+x+" where username='"+username+"'";
 		DbController db=DbFactory.getDbController();
@@ -47,6 +84,11 @@ public class MySqlSettingsDao implements SettingsDao{
 		db.close();
 	}
 	
+	/**
+	 * Update fire info.
+	 *
+	 * @param x the x
+	 */
 	public void updateFireInfo(boolean x){
 		String query="update settings set fireInfo="+x+" where username='"+username+"'";
 		DbController db=DbFactory.getDbController();
@@ -55,6 +97,11 @@ public class MySqlSettingsDao implements SettingsDao{
 		db.close();
 	}
 	
+	/**
+	 * Update mask info.
+	 *
+	 * @param x the x
+	 */
 	public void updateMaskInfo(boolean x){
 		String query="update settings set maskInfo="+x+" where username='"+username+"'";
 		DbController db=DbFactory.getDbController();
@@ -63,6 +110,12 @@ public class MySqlSettingsDao implements SettingsDao{
 		db.close();
 		
 	}
+	
+	/**
+	 * Gets the settings.
+	 *
+	 * @return the settings
+	 */
 	public Settings getSettings(){
 		Settings s=new Settings();
 		s.setUsername(username);
@@ -86,6 +139,11 @@ public class MySqlSettingsDao implements SettingsDao{
 		return s;
 	}
 	
+	/**
+	 * Gets the haze info users.
+	 *
+	 * @return the haze info users
+	 */
 	public ArrayList<User> getHazeInfoUsers(){
 		ArrayList<User> list=new ArrayList<User>();
 		User user=null;
@@ -109,6 +167,11 @@ public class MySqlSettingsDao implements SettingsDao{
 		return list;
 	}
 	
+	/**
+	 * Gets the fire info users.
+	 *
+	 * @return the fire info users
+	 */
 	public ArrayList<User> getFireInfoUsers(){
 		ArrayList<User> list=new ArrayList<User>();
 		User user=null;
@@ -132,6 +195,11 @@ public class MySqlSettingsDao implements SettingsDao{
 		return list;
 	}
 	
+	/**
+	 * Gets the mask info users.
+	 *
+	 * @return the mask info users
+	 */
 	public ArrayList<User> getMaskInfoUsers(){
 		ArrayList<User> list=new ArrayList<User>();
 		User user=null;
@@ -155,6 +223,11 @@ public class MySqlSettingsDao implements SettingsDao{
 		return list;
 	}
 	
+	/**
+	 * Gets the bombshelter info users.
+	 *
+	 * @return the bombshelter info users
+	 */
 	public ArrayList<User> getBombshelterInfoUsers(){
 		ArrayList<User> list=new ArrayList<User>();
 		User user=null;

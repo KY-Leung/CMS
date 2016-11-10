@@ -10,7 +10,19 @@ import com.entity.BombshelterInfo;
 import com.entity.EmergencyServicesInfo;
 import com.entity.HazeInfo;
 import com.entity.MaskInfo;
+// TODO: Auto-generated Javadoc
+
+/**
+ * The Class InfoManager.
+ */
 public class InfoManager {
+	
+	/**
+	 * Creates new mask info.
+	 *
+	 * @param location the location where mask is distributed
+	 * @param maskType the mask type
+	 */
 	public void createMaskInfo(String location,String maskType){
 		DbController db=DbFactory.getDbController();
 		db.connect();
@@ -19,6 +31,12 @@ public class InfoManager {
 		db.close();
 		
 	}
+	
+	/**
+	 * Creates new bombshelter info.
+	 *
+	 * @param location the location of bombshelter
+	 */
 	public void createBombshelterInfo(String location){
 		DbController db=DbFactory.getDbController();
 		db.connect();
@@ -26,6 +44,12 @@ public class InfoManager {
 		db.updateQuery(query);
 		db.close();
 	}
+	
+	/**
+	 * Retrieve mask info.
+	 *
+	 * @return the array list of maskInfo objects
+	 */
 	public ArrayList<MaskInfo> retrieveMaskInfo(){
 		ArrayList<MaskInfo> list=new ArrayList<MaskInfo>();
 		MaskInfo mi=null;
@@ -47,6 +71,11 @@ public class InfoManager {
 		return list;
 	}
 	
+	/**
+	 * Retrieve bombshelter info.
+	 *
+	 * @return the array list of bombshelterInfo objects
+	 */
 	public ArrayList<BombshelterInfo> retrieveBombshelterInfo(){
 		ArrayList<BombshelterInfo> list=new ArrayList<BombshelterInfo>();
 		BombshelterInfo bi=null;
@@ -67,6 +96,11 @@ public class InfoManager {
 		return list;
 	}
 	
+	/**
+	 * Retrieve emergency services info.
+	 *
+	 * @return the array list of emergencyServicesInfo objects
+	 */
 	public ArrayList<EmergencyServicesInfo> retrieveEmergencyServicesInfo(){
 		ArrayList<EmergencyServicesInfo> list=new ArrayList<EmergencyServicesInfo>();
 		EmergencyServicesInfo ei=null;

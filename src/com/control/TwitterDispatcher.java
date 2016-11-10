@@ -2,16 +2,39 @@ package com.control;
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TwitterDispatcher.
+ */
 public class TwitterDispatcher implements InfoDispatcher{
+	
+	/** The tweetmessage. */
 	private String tweetmessage;
+	
+	/** The subject. */
 	private String subject;
 
+	/**
+	 * Sets the message.
+	 *
+	 * @param message the tweet to be published
+	 */
 	public void setMessage(String message){
 		tweetmessage=message;
 	}
+	
+	/**
+	 * Sets the subject.
+	 *
+	 * @param subject the subject
+	 */
 	public void setSubject(String subject){
 		this.subject=subject;
 	}
+	
+	/**
+	 * Dispatch information to twitter.
+	 */
 	public void dispatchInformation(){
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
@@ -37,6 +60,11 @@ public class TwitterDispatcher implements InfoDispatcher{
 
 		
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		
 		// Twitter account
